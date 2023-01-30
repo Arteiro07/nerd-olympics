@@ -1,0 +1,13 @@
+using System.ComponentModel.DataAnnotations.Schema;
+
+namespace NerdOlympics.Models;
+
+public class Record {
+    int RecordId {get;set;}
+    string? Description {get;set;}
+    
+    [ForeignKey("Competitions")]
+    int CompetitionsId {get;set;}
+    [ForeignKey("Users")]
+    int UsersId{get;set;}
+}
