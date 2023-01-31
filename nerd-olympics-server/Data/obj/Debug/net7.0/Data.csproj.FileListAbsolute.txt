@@ -10,3 +10,5 @@ C:\Users\migue\Documents\NerdOlimpics\nerd-olympics-server\Data\obj\Debug\net7.0
 C:\Users\migue\Documents\NerdOlimpics\nerd-olympics-server\Data\obj\Debug\net7.0\refint\Data.dll
 C:\Users\migue\Documents\NerdOlimpics\nerd-olympics-server\Data\obj\Debug\net7.0\Data.pdb
 C:\Users\migue\Documents\NerdOlimpics\nerd-olympics-server\Data\obj\Debug\net7.0\ref\Data.dll
+C:\Users\migue\Documents\NerdOlimpics\nerd-olympics-server\Data\bin\Debug\net7.0\Data.runtimeconfig.json
+C:\Users\migue\Documents\NerdOlimpics\nerd-olympics-server\Data\obj\Debug\net7.0\Data.genruntimeconfig.cache
