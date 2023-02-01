@@ -1,8 +1,8 @@
 ﻿using Data.Models;
 
-namespace Data.Interfaces
+namespace NerdOlympicsAPI.Interfaces
 {
-    public interface ICompetitionRepository
+    public interface ICompetitionsService
     {
         Task<List<Competition>> GetCompetitions();
     }

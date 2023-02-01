@@ -4,10 +4,21 @@ using Microsoft.OpenApi.Models;
 using Microsoft.EntityFrameworkCore;
 using Data.Interfaces;
 using Data.Repositories;
+using NerdOlympicsAPI.Interfaces;
+using NerdOlympicsAPI.Services;
 
 var builder = WebApplication.CreateBuilder(args);
 
+var connectionString = builder.Configuration["ConnectionStrings:NerdOlympicsDB"] ?? throw new InvalidOperationException("Connection string not found.");
+
+builder.Services.AddDbContext<NerdOlympicsDBContext>(options =>
+{
+    options.UseSqlServer(connectionString, sqlServerOptions => sqlServerOptions.CommandTimeout(180));
+});
+
 builder.Services.AddScoped<ICompetitionRepository,CompetitionRepository>();
+builder.Services.AddScoped<ICompetitionsService,CompetitionsService>();
+
 
 // Add services to the container.
 builder.Services.AddControllers(options =>
@@ -15,12 +26,6 @@ builder.Services.AddControllers(options =>
     options.Filters.Add(new ProducesResponseTypeAttribute(200));
     options.Filters.Add(new ProducesResponseTypeAttribute(400));
     options.Filters.Add(new ProducesResponseTypeAttribute(500));
-});
-
-builder.Services.AddDbContext<NerdOlympicsDBContext>(options =>
-{
-    var connectionString = builder.Configuration["ConnectionStrings:NerdOlympicsDB"] ?? throw new InvalidOperationException("Connection string not found.");
-    options.UseSqlServer(connectionString, sqlServerOptions => sqlServerOptions.CommandTimeout(180));
 });
 
 builder.Services.AddSwaggerGen(c =>

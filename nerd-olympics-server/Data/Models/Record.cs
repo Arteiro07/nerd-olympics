@@ -8,9 +8,11 @@ namespace Data.Models
         public string? Description { get; set; }
          
         [ForeignKey("Competitions")]
-        public int CompetitionsId { get; set; }
+        public int CompetitionId { get; set; }
+        public virtual Competition Competition { get; set; }
          
         [ForeignKey("Users")]
-        public int UsersId { get; set; }
+        public int UserId { get; set; }
+        public virtual User User { get; set; }  
     }
 }
