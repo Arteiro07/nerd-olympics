@@ -437,19 +437,19 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\migue\\.nuget\\packages\\": {}
+    "C:\\Users\\artei\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\migue\\Documents\\NerdOlimpics\\nerd-olympics-server\\NerdOlympics\\NerdOlympics.csproj",
+      "projectUniqueName": "C:\\Users\\artei\\Desktop\\nerd_olympics\\nerd-olympics-server\\NerdOlympics\\NerdOlympics.csproj",
       "projectName": "NerdOlympics",
-      "projectPath": "C:\\Users\\migue\\Documents\\NerdOlimpics\\nerd-olympics-server\\NerdOlympics\\NerdOlympics.csproj",
-      "packagesPath": "C:\\Users\\migue\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\migue\\Documents\\NerdOlimpics\\nerd-olympics-server\\NerdOlympics\\obj\\",
+      "projectPath": "C:\\Users\\artei\\Desktop\\nerd_olympics\\nerd-olympics-server\\NerdOlympics\\NerdOlympics.csproj",
+      "packagesPath": "C:\\Users\\artei\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\artei\\Desktop\\nerd_olympics\\nerd-olympics-server\\NerdOlympics\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
-        "C:\\Users\\migue\\AppData\\Roaming\\NuGet\\NuGet.Config"
+        "C:\\Users\\artei\\AppData\\Roaming\\NuGet\\NuGet.Config"
       ],
       "originalTargetFrameworks": [
         "net7.0"

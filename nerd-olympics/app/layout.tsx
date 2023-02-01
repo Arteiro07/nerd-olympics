@@ -1,4 +1,4 @@
-import './globals.css'
+import "./layout.scss";
 
 export default function RootLayout({
   children,
@@ -7,12 +7,33 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      {/*
-        <head /> will contain the components returned by the nearest parent
-        head.tsx. Find out more at https://beta.nextjs.org/docs/api-reference/file-conventions/head
-      */}
       <head />
-      <body>{children}</body>
+      <body>
+      <div className='container'>
+        <div className='navigation-bar'>
+          <nav>
+            <ul>
+              <li>
+                <a href="#" id="logo" > Logo </a>
+              </li>
+              <li>
+                <a href="about">About </a>
+              </li>
+              <li>
+                <a href="signup">Sign up</a>
+              </li>
+              <li>
+                <a href="players">Players</a>
+              </li>
+              <li>
+                <a href="activities">Activities</a>
+              </li>
+            </ul>
+          </nav>
+        </div>  
+        {children}
+        </div>
+      </body>
     </html>
   )
 }
