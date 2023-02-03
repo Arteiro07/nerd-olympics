@@ -6,13 +6,14 @@ namespace Data.Models
     {
         public int RecordId { get; set; }
         public string? Description { get; set; }
+        public int Value { get; set; }
+
          
-        [ForeignKey("Competitions")]
-        public int CompetitionId { get; set; }
+        [ForeignKey("CompetitionId")]
         public virtual Competition Competition { get; set; }
          
-        [ForeignKey("Users")]
-        public int UserId { get; set; }
+
+        [ForeignKey("UserId")]
         public virtual User User { get; set; }  
     }
 }

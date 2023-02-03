@@ -19,6 +19,9 @@ builder.Services.AddDbContext<NerdOlympicsDBContext>(options =>
 builder.Services.AddScoped<ICompetitionRepository,CompetitionRepository>();
 builder.Services.AddScoped<ICompetitionsService,CompetitionsService>();
 
+builder.Services.AddScoped<IUserRepository, UserRepository>();
+builder.Services.AddScoped<IUserService, UserService>();
+
 
 // Add services to the container.
 builder.Services.AddControllers(options =>

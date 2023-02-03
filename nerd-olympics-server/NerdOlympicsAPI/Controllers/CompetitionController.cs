@@ -6,12 +6,12 @@ namespace NerdOlympics.Controllers;
 
 [ApiController]
 [Route("competitions")]
-public class CompetitionsController : Controller
+public class CompetitionController : Controller
 {
-    private readonly ILogger<CompetitionsController> _logger;
+    private readonly ILogger<CompetitionController> _logger;
     private readonly ICompetitionsService _competitionsService;
 
-    public CompetitionsController(ILogger<CompetitionsController> logger, ICompetitionsService competitionsService)
+    public CompetitionController(ILogger<CompetitionController> logger, ICompetitionsService competitionsService)
     {
         _logger = logger;
         _competitionsService = competitionsService;

@@ -12,8 +12,7 @@ namespace Data.Models
         public string? Description {get;set;}
         public DateTime? CreatedDate { get; set; }
 
-        [ForeignKey("Users")]
-        public int CreationUserId { get; set; }
+        [ForeignKey("UserID")]
         [JsonIgnore]
         public virtual User User { get; set; }
     }
