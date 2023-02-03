@@ -1,10 +1,16 @@
 import axios from 'axios'
 import React from 'react'
 import Image from 'next/image';
+import { NextPageContext } from 'next';
 
-export default async function page({params}:any) {
+interface MyPageContext extends NextPageContext {
+  params: {
+    player: string;
+  };
+}
+export default async function page({params}: MyPageContext) {
     const res = await axios.get(`https://dummyjson.com/users/${params.player}`);
-    console.log(res.data)
+
     return(
         <div className='playerCard'>
             <>

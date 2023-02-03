@@ -21,3 +21,10 @@ export type UserDetailed = {
     eyeColor:string;
     image:string;
 };
+
+export type CompetitionDto = {
+    id: number;
+    title: string;
+    description: string;
+    createdDate: Date;
+};

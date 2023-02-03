@@ -1,3 +1,7 @@
+import BaseLoading from '../../loading'
+
 export default function Loading() {
-    return <p>Loading player details</p>;
-  }
+  return( 
+    <BaseLoading/>  
+  )
+}
