@@ -1,4 +1,3 @@
-@import url("https://fonts.googleapis.com/css?family=Fira+Sans");
 @import "../utilities/base.scss";
 
 
@@ -14,6 +13,7 @@ html {
     color: $letter-color;
     background:  $background-color;
     overflow: auto;
+    font-family: 'Poppins', sans-serif;
     @include scrollbars($scrollbar-size, $title-color, $background-color);
  
 }
