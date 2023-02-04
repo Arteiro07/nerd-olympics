@@ -1,0 +1,22 @@
+@import "../../utilities/base.scss";
+
+.divider{
+    width: 90%;
+    border-top: 2px solid $border-color;
+}
+
+.card{
+    color: $letter-color;
+    font-size: 25px;
+    transition: background-color 0.3s ease-in;
+
+    a {
+        color: $letter-color;
+        text-decoration: none;
+    }
+    width: 100%;
+}
+.card:hover{
+    width: 100%;
+    background-color: darken($background-color, 5%) ;
+}

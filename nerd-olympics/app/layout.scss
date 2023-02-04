@@ -1,0 +1,19 @@
+@import url("https://fonts.googleapis.com/css?family=Fira+Sans");
+@import "../utilities/base.scss";
+
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+    width: 100%;
+    height: 100vh;
+    color: $letter-color;
+    background:  $background-color;
+    overflow: auto;
+    @include scrollbars($scrollbar-size, $title-color, $background-color);
+ 
+}

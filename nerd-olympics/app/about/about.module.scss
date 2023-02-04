@@ -1,0 +1,18 @@
+@import "../../utilities/base.scss";
+
+.container{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 10px;
+    
+    h1{
+        font-size: 5rem;
+    }
+    
+    .image{
+        border-radius: 5px;
+        margin: 20px;
+    }
+}

@@ -1,0 +1,11 @@
+@import "../../utilities/base.scss";
+
+.container{
+    margin: 20px;
+    border: 2px solid $border-color;
+    border-radius: 5px;
+    height: 90%;
+    overflow: auto;
+    @include scrollbars($scrollbar-size, $title-color, $background-color);
+}
+
