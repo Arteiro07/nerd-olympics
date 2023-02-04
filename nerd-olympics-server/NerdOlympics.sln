@@ -7,6 +7,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "NerdOlympics.API", "NerdOly
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "NerdOlympics.Data", "NerdOlympic.Data\NerdOlympics.Data.csproj", "{439F8B45-67E4-47AF-84EA-9251AA2DC86F}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TestWebApp", "TestWebApp\TestWebApp.csproj", "{1ADCAA5B-81A7-4A87-973E-02A9EA50DA27}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,6 +23,10 @@ Global
 		{439F8B45-67E4-47AF-84EA-9251AA2DC86F}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{439F8B45-67E4-47AF-84EA-9251AA2DC86F}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{439F8B45-67E4-47AF-84EA-9251AA2DC86F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1ADCAA5B-81A7-4A87-973E-02A9EA50DA27}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1ADCAA5B-81A7-4A87-973E-02A9EA50DA27}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1ADCAA5B-81A7-4A87-973E-02A9EA50DA27}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1ADCAA5B-81A7-4A87-973E-02A9EA50DA27}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

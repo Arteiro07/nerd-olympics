@@ -23,7 +23,7 @@ namespace Data.Repositories
 
         public async Task<User?> CreateUser(User user)
         {
-            if (string.IsNullOrEmpty(user.EmailAddress) || !await CheckEmailExists(user.EmailAddress))
+            if (string.IsNullOrEmpty(user.EmailAddress) || await CheckEmailExists(user.EmailAddress))
             {
                 return null;
             }
