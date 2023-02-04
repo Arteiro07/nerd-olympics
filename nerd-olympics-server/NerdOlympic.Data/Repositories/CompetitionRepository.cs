@@ -17,5 +17,14 @@ namespace Data.Repositories
         {
             return await _context.Competitions!.ToListAsync();
         }
+
+        public async Task<Competition?> CreateCompetition(Competition competition)
+        {           
+            await _context.Competitions!.AddAsync(competition);
+            await _context.SaveChangesAsync();
+
+            return await _context.Competitions!.FirstOrDefaultAsync(x => x.CompetitionId == competition.CompetitionId);
+        }
+
     }
 }

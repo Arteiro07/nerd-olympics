@@ -1,7 +1,5 @@
-using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Text.Json.Serialization;
-using Microsoft.EntityFrameworkCore;
 
 namespace Data.Models
 {
@@ -11,10 +9,11 @@ namespace Data.Models
         public string? Name {get;set;}    
         public string? Description {get;set;}
         public DateTime? CreatedDate { get; set; }
-
-        [ForeignKey("UserID")]
+        
         [JsonIgnore]
-        public virtual User User { get; set; }
+        [ForeignKey("UserId")]
+        public virtual User UserCreated { get; set; } = new();
+        public int UserId { get; set; }
     }
 }
 

@@ -1,6 +1,8 @@
 ﻿using Data.Models;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using NerdOlympicsAPI.Interfaces;
+using NerdOlympicsData.Enum;
 
 namespace NerdOlympics.Controllers;
 
@@ -18,9 +20,17 @@ public class CompetitionController : Controller
     }
 
     [HttpGet]
-    [Route("")]
-    public async Task<List<Competition>> GetCompetitions()
+    [Route("all")]
+    public async Task<IActionResult> GetCompetitions()
     {
         return await _competitionsService.GetCompetitions();
+    }
+
+    [HttpPost]
+    [Route("")]
+    [Authorize(Policies.Authenticated)]
+    public async Task<IActionResult> CreateCompetition([FromBody] Competition competition)
+    {
+        return await _competitionsService.CreateCompetition(competition);
     }
 }

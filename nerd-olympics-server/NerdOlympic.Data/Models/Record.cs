@@ -10,10 +10,11 @@ namespace Data.Models
 
          
         [ForeignKey("CompetitionId")]
-        public virtual Competition Competition { get; set; }
-         
+        public virtual Competition Competition { get; set; } = new ();
+        public int CompetitionId { get; set; }
 
         [ForeignKey("UserId")]
-        public virtual User User { get; set; }  
+        public virtual User User { get; set; } = new ();
+        public int UserId { get; set; }
     }
 }
