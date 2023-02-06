@@ -1,4 +1,4 @@
-import style from "./competitions.module.scss";
+import style from "./page.module.scss";
 import Competition from "./Competition";
 import { CompetitionDto } from "../../utilities/types";
 import api from "@/services";
