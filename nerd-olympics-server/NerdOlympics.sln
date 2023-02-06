@@ -3,9 +3,11 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.4.33213.308
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Data", "Data\Data.csproj", "{2E5E6393-A238-4258-989F-98313906E26F}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "NerdOlympics.API", "NerdOlympicsAPI\NerdOlympics.API.csproj", "{25D3CB18-862A-4AA3-A9CB-CD2DC9E92649}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "NerdOlympicsAPI", "NerdOlympicsAPI\NerdOlympicsAPI.csproj", "{25D3CB18-862A-4AA3-A9CB-CD2DC9E92649}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "NerdOlympics.Data", "NerdOlympic.Data\NerdOlympics.Data.csproj", "{439F8B45-67E4-47AF-84EA-9251AA2DC86F}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TestWebApp", "TestWebApp\TestWebApp.csproj", "{1ADCAA5B-81A7-4A87-973E-02A9EA50DA27}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -13,14 +15,18 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{2E5E6393-A238-4258-989F-98313906E26F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{2E5E6393-A238-4258-989F-98313906E26F}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{2E5E6393-A238-4258-989F-98313906E26F}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{2E5E6393-A238-4258-989F-98313906E26F}.Release|Any CPU.Build.0 = Release|Any CPU
 		{25D3CB18-862A-4AA3-A9CB-CD2DC9E92649}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{25D3CB18-862A-4AA3-A9CB-CD2DC9E92649}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{25D3CB18-862A-4AA3-A9CB-CD2DC9E92649}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{25D3CB18-862A-4AA3-A9CB-CD2DC9E92649}.Release|Any CPU.Build.0 = Release|Any CPU
+		{439F8B45-67E4-47AF-84EA-9251AA2DC86F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{439F8B45-67E4-47AF-84EA-9251AA2DC86F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{439F8B45-67E4-47AF-84EA-9251AA2DC86F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{439F8B45-67E4-47AF-84EA-9251AA2DC86F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1ADCAA5B-81A7-4A87-973E-02A9EA50DA27}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1ADCAA5B-81A7-4A87-973E-02A9EA50DA27}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1ADCAA5B-81A7-4A87-973E-02A9EA50DA27}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1ADCAA5B-81A7-4A87-973E-02A9EA50DA27}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
