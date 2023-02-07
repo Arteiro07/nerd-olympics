@@ -30,7 +30,7 @@ namespace Data.Repositories
             await _context.Users!.AddAsync(user);
             await _context.SaveChangesAsync();
 
-            return _context.Users?.FirstOrDefault(user);
+            return await _context.Users!.FirstOrDefaultAsync(x => x.UserId == user.UserId); ;
         }
 
         public async Task<User?> Authenticate(string emailAddress, string password)
