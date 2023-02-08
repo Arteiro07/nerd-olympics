@@ -23,5 +23,22 @@ namespace NerdOlympicsAPI.Services
         {
             return new OkObjectResult(await _competitionRepository.CreateCompetition(competition));
         }
+
+        public async Task<IActionResult> UpdateCompetition(Competition competition, string userId)
+        {
+            if(competition == null || !await _competitionRepository.UserOwnsCompetition(userId, competition.CompetitionId))
+            {
+                return new UnauthorizedObjectResult("User does not own competition");
+            }
+
+            Competition? updatedCompetition = await _competitionRepository.UpdateCompetition(competition);
+
+            if (updatedCompetition == null)
+            {
+                throw new Exception("Error updating competition");
+            }
+
+            return new OkObjectResult(updatedCompetition);
+        }
     }
 }

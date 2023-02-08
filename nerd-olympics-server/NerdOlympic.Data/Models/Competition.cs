@@ -12,7 +12,7 @@ namespace Data.Models
         
         [JsonIgnore]
         [ForeignKey("UserId")]
-        public virtual User UserCreated { get; set; } = new();
+        public virtual User Owner { get; set; } = new();
         public int UserId { get; set; }
     }
 }

@@ -7,5 +7,6 @@ namespace NerdOlympicsAPI.Interfaces
     {
         Task<IActionResult> GetCompetitions();
         Task<IActionResult> CreateCompetition(Competition competition);
+        Task<IActionResult> UpdateCompetition(Competition competition, string userId);
     }
 }

@@ -1,5 +1,6 @@
 ﻿using Data.Models;
 using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Authorization.Infrastructure;
 using Microsoft.AspNetCore.Mvc;
 using NerdOlympicsAPI.Interfaces;
 using NerdOlympicsData.Enum;
@@ -33,4 +34,20 @@ public class CompetitionController : Controller
     {
         return await _competitionsService.CreateCompetition(competition);
     }
+
+    [HttpPut]
+    [Route("")]
+    [Authorize(Policies.Authenticated)]
+    public async Task<IActionResult> UpdateCompetition([FromBody] Competition competition)
+    {
+        var userId = User.Claims.FirstOrDefault(x => x.Type == ClaimTypes.Authenticated)?.Value;
+
+        if(userId == null) 
+        { 
+            return Unauthorized();
+        }
+
+        return await _competitionsService.UpdateCompetition(competition, userId);
+    }
+
 }

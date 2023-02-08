@@ -13,15 +13,11 @@ namespace NerdOlympics.Controllers;
 [Route("users")]
 public class UserController : Controller
 {
-    private readonly ILogger<UserController> _logger;
     private readonly IUserService _userService;
-    private readonly IJwtTokenService _jwtTokenService;
 
-    public UserController(ILogger<UserController> logger, IUserService userService, IJwtTokenService jwtTokenService)
+    public UserController(IUserService userService)
     {
-        _logger = logger;
         _userService = userService;
-        _jwtTokenService = jwtTokenService;
     }
 
     [HttpGet]
@@ -41,30 +37,17 @@ public class UserController : Controller
          return await _userService.GetUser(email);
     }
 
-
     [HttpPost]
     [Route("registration")]
-    public async Task<IActionResult> RegisterUser([FromBody] LoginCredentials user)
+    public async Task<IActionResult> CreateUser([FromBody] SignUpCredentials user)
     {
         return await _userService.CreateUser(user);         
     }
 
     [HttpPost]
     [Route("authentication")]
-    public async Task<IActionResult> Authenticate([FromBody] LoginCredentials login)
+    public async Task<IActionResult> Authenticate([FromBody] LoginCredentials user)
     {
-        if(string.IsNullOrEmpty(login.Email) || string.IsNullOrEmpty(login.Password))
-            return Unauthorized();
-
-        User? user = await _userService.Authenticate(login.Email!, login.Password!);
-
-        if (user == null)        
-            return Unauthorized();        
-
-        // Create a JWT that contains the user's claims and a signing key
-        string token = _jwtTokenService.GenerateToken(user.EmailAddress!, user.IsAdmin);
-
-        // Return the JWT to the client
-        return Ok(new { token, user });
+        return await _userService.Authenticate(user);
     }
 }

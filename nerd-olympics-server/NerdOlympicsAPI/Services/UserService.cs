@@ -4,6 +4,7 @@ using Microsoft.AspNetCore.Http.HttpResults;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.VisualBasic;
 using NerdOlympicsAPI.Interfaces;
+using NerdOlympicsAPI.Services.Security;
 using NerdOlympicsData.Cryptography;
 using NerdOlympicsData.Models;
 
@@ -12,22 +13,40 @@ namespace NerdOlympicsAPI.Services
     public class UserService : IUserService
     {
         private readonly IUserRepository _userRepository;
+        private readonly IJwtTokenService _jwtTokenService;
 
-        public UserService(IUserRepository userRepository) 
+        public UserService(IUserRepository userRepository, IJwtTokenService jwtTokenService) 
         {
             _userRepository = userRepository;
+            _jwtTokenService = jwtTokenService;
         }
 
-        public async Task<User?> Authenticate(string emailAddress, string password)
+        public async Task<IActionResult> Authenticate(LoginCredentials creds)
         {
-            return await _userRepository.Authenticate(emailAddress, password);
+            if (creds == null || string.IsNullOrEmpty(creds.Email) || string.IsNullOrEmpty(creds.Password))
+                return new UnauthorizedObjectResult(null);
+
+            User? user =  await _userRepository.Authenticate(creds.Email, creds.Password);
+
+            if (user == null)
+                return  new UnauthorizedObjectResult(null);
+
+            // Create a JWT that contains the user's claims and a signing key
+            string token = _jwtTokenService.GenerateToken(user.UserId!, user.IsAdmin);
+
+            // Return the JWT to the client
+            return new OkObjectResult(new { token, user });
         }
 
-        public async Task<IActionResult> CreateUser(LoginCredentials user)
+        public async Task<IActionResult> CreateUser(SignUpCredentials user)
         {
+            if (await _userRepository.CheckEmailExists(user.Email!))
+                return new ConflictObjectResult("Email address already in use.");
+
             var newUser = new User() {
                 Name = user.Name,
-                EmailAddress = user.Email,
+                Email = user.Email,
+                AvatarId = user.AvatarId,  
                 Password = PasswordHasher.HashPassword(user.Password!),
                 IsAdmin = false,
             };
@@ -36,9 +55,13 @@ namespace NerdOlympicsAPI.Services
 
             if(createdUser != null)
             {
-                return new OkObjectResult(createdUser);
+                // Create a JWT that contains the user's claims and a signing key
+                string token = _jwtTokenService.GenerateToken(createdUser.UserId, createdUser.IsAdmin);
+
+                return new OkObjectResult(new { token, createdUser });
             }
-            return new ConflictObjectResult("Email already in use");
+            throw new Exception("Error creating user");
+
         }
 
         public async Task<IActionResult> GetUsers()

@@ -6,8 +6,8 @@ namespace NerdOlympicsAPI.Interfaces
 {
     public interface IUserService
     {
-        Task<User?> Authenticate(string emailAddress, string password);
-        Task<IActionResult> CreateUser(LoginCredentials user);
+        Task<IActionResult> Authenticate(LoginCredentials user);
+        Task<IActionResult> CreateUser(SignUpCredentials user);
         Task<IActionResult> GetUser(string email);
         Task<IActionResult> GetUsers();
     }

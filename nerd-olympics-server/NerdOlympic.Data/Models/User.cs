@@ -6,7 +6,8 @@ namespace Data.Models
     {
         public int UserId {get;set;}
         public string? Name {get;set;}
-        public string? EmailAddress {get;set;}
+        public string? Email {get;set;}
+        public string? AvatarId {get;set;}
         [JsonIgnore]
         public bool IsAdmin { get;set;}
         [JsonIgnore]
