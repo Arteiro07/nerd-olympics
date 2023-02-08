@@ -1,9 +1,12 @@
 ﻿using Data.Models;
+using Microsoft.AspNetCore.Mvc;
 
 namespace NerdOlympicsAPI.Interfaces
 {
     public interface ICompetitionsService
     {
-        Task<List<Competition>> GetCompetitions();
+        Task<IActionResult> GetCompetitions();
+        Task<IActionResult> CreateCompetition(Competition competition);
+        Task<IActionResult> UpdateCompetition(Competition competition, string userId);
     }
 }

@@ -1,0 +1,56 @@
+﻿@page
+@model IndexModel
+@{
+    ViewData["Title"] = "Home page";
+}
+
+<div class="text-center">
+    <h1 class="display-4">Welcome</h1>
+    <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+</div>
+
+
+<!DOCTYPE html>
+<html>
+<head>
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  <script>
+    $(document).ready(function() {
+
+      $("#getButton").click(function() {
+        var url =$('#urlget').val();
+        $.get(url, function(data) {
+          $("#response").text(JSON.stringify(data));
+        });
+      });
+
+      $("#postButton").click(function() {
+        var url =$('#urlpost').val();
+        var data = {    email:"test22",    Password: "test2"};
+        $.ajax({
+            type: "POST",
+            url: url,
+            data: JSON.stringify(data),
+            contentType: "application/json",
+            headers: { "Ocp-Apim-Subscription-Key" :"cb43713dd70242bb996602d55506a8a7"},
+            success: function (response) {
+                $("#response").text(JSON.stringify(response));
+            }
+        });
+      });
+    });
+  </script>
+</head>
+<body>
+   <input type="text" id="urlget" value="https://apim-nerd-olympics-dev.azure-api.net/competitions/all" style="width:500px"/>
+  <button id="getButton">Make GET Request</button>
+
+  <span></span>
+  <p/>
+
+  <input type="text" id="urlpost" value="https://apim-nerd-olympics-dev.azure-api.net/users/registration" style="width:500px" />
+  <button id="postButton">Make POST Request</button>
+  <br />
+  <div id="response"></div>
+</body>
+</html>
