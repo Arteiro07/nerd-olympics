@@ -1,8 +1,8 @@
-﻿using Data.Interfaces;
-using Data.Models;
+﻿using NerdOlympics.Data.Interfaces;
+using NerdOlympics.Data.Models;
 using Microsoft.EntityFrameworkCore;
 
-namespace Data.Repositories
+namespace NerdOlympics.Data.Repositories
 {
     public class CompetitionRepository : ICompetitionRepository
     {
@@ -46,6 +46,11 @@ namespace Data.Repositories
             await _context.SaveChangesAsync();
 
             return _context.Competitions!.FirstOrDefault(x => x.CompetitionId!= oldCompetition.CompetitionId);
+        }
+
+        public async Task<bool> CompetitionExists(int competitionId)
+        {
+            return await _context.Competitions!.AnyAsync(x => x.CompetitionId == competitionId);
         }
     }
 }

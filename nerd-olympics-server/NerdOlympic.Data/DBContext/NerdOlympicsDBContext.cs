@@ -1,7 +1,7 @@
-﻿using Data.Models;
+﻿using NerdOlympics.Data.Models;
 using Microsoft.EntityFrameworkCore;
 
-namespace Data
+namespace NerdOlympics.Data
 {
     public class NerdOlympicsDBContext : DbContext
     {

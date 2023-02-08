@@ -1,11 +1,11 @@
-﻿using Data.Interfaces;
-using Data.Models;
+﻿using NerdOlympics.Data.Interfaces;
+using NerdOlympics.Data.Models;
 using Microsoft.EntityFrameworkCore;
-using NerdOlympicsData.Cryptography;
+using NerdOlympics.Data.Cryptography;
 using System.Diagnostics.Tracing;
 using System.Net.Mail;
 
-namespace Data.Repositories
+namespace NerdOlympics.Data.Repositories
 {
     public class UserRepository : IUserRepository
     {
@@ -53,6 +53,11 @@ namespace Data.Repositories
         public async Task<List<int>> GetUserCompetitionIds(int userId)
         {
             return await _context.Competitions!.Where(x => x.UserId == userId).Select(x => x.CompetitionId).ToListAsync();
+        }
+
+        public async Task<bool> UserExists(int userId)
+        {
+            return await _context.Users!.AnyAsync(x => x.UserId == userId);
         }
     }
 }

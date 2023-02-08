@@ -1,6 +1,6 @@
-﻿using Data.Models;
+﻿using NerdOlympics.Data.Models;
 
-namespace Data.Interfaces
+namespace NerdOlympics.Data.Interfaces
 {
     public interface IUserRepository
     {
@@ -10,5 +10,6 @@ namespace Data.Interfaces
         Task<List<User>> GetUsers();
         Task<User?> GetUsers(string email);
         Task<bool> CheckEmailExists(string email);
+        Task<bool> UserExists(int userId);
     }
 }

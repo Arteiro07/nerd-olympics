@@ -1,9 +1,8 @@
-﻿using Data.Models;
-using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Authorization.Infrastructure;
+﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using NerdOlympics.Data.Enum;
+using NerdOlympics.Data.Models;
 using NerdOlympicsAPI.Interfaces;
-using NerdOlympicsData.Enum;
 
 namespace NerdOlympics.Controllers;
 

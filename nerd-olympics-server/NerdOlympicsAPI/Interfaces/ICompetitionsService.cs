@@ -1,4 +1,4 @@
-﻿using Data.Models;
+﻿using NerdOlympics.Data.Models;
 using Microsoft.AspNetCore.Mvc;
 
 namespace NerdOlympicsAPI.Interfaces

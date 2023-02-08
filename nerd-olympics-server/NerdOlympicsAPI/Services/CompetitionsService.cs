@@ -1,6 +1,6 @@
-﻿using Data.Interfaces;
-using Data.Models;
+﻿using NerdOlympics.Data.Models;
 using Microsoft.AspNetCore.Mvc;
+using NerdOlympics.Data.Interfaces;
 using NerdOlympicsAPI.Interfaces;
 
 namespace NerdOlympicsAPI.Services

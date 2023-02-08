@@ -1,4 +1,4 @@
-﻿namespace NerdOlympicsData.Enum
+﻿namespace NerdOlympics.Data.Enum
 {
     public static class Policies
    {

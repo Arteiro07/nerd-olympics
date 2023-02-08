@@ -1,6 +1,6 @@
 ﻿using Microsoft.IdentityModel.Tokens;
 using NerdOlympicsAPI.Interfaces;
-using Custom = NerdOlympicsData.Enum;
+using Custom = NerdOlympics.Data.Enum;
 using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
 using System.Text;

@@ -1,12 +1,8 @@
-﻿using Data.Interfaces;
-using Data.Models;
-using Microsoft.AspNetCore.Http.HttpResults;
-using Microsoft.AspNetCore.Mvc;
-using Microsoft.VisualBasic;
+﻿using Microsoft.AspNetCore.Mvc;
+using NerdOlympics.Data.Cryptography;
+using NerdOlympics.Data.Interfaces;
+using NerdOlympics.Data.Models;
 using NerdOlympicsAPI.Interfaces;
-using NerdOlympicsAPI.Services.Security;
-using NerdOlympicsData.Cryptography;
-using NerdOlympicsData.Models;
 
 namespace NerdOlympicsAPI.Services
 {
