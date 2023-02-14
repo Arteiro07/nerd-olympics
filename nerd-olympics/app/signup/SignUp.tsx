@@ -1,28 +1,44 @@
 "use client";
+
+import { useAuth } from "@/context/authContext";
 import { authSignUp } from "@/services/auth";
-import { ChangeEvent, FormEvent, useEffect, useState } from "react";
-import { User } from "../../utilities/types";
+import { ChangeEvent, FormEvent, useContext, useEffect, useState } from "react";
+import {
+	User,
+	initialState,
+	UserSignUpResponse,
+} from "../../utilities/userTypes";
 import style from "./signup.module.scss";
 
 export default function SignUp() {
-	const [user, setUser] = useState<User>({
-		name: "",
-		email: "",
-		password: "",
-	});
+	const { user, setUser } = useAuth();
+	const [localUser, setLocalUser] = useState<User>(initialState);
 	const [disabled, setDisabled] = useState(false);
+
 	useEffect(() => {
-		setDisabled(!user.email || !user.password || !user.name);
-	}, [user]);
+		setDisabled(!localUser.email || !localUser.password || !localUser.name);
+	}, [localUser]);
+
+	const handleChange = (event: ChangeEvent<HTMLInputElement>) =>
+		setLocalUser({ ...localUser, [event.target.name]: event.target.value });
 
 	const handleSubmit = (e: FormEvent) => {
 		e.preventDefault();
-		console.log(user);
-		authSignUp(user);
+		signUp(localUser);
 	};
 
-	const handleChange = (event: ChangeEvent<HTMLInputElement>) =>
-		setUser({ ...user, [event.target.name]: event.target.value });
+	const signUp = async (apiUser: User) => {
+		const res = (await authSignUp(apiUser)) as UserSignUpResponse;
+
+		setUser({
+			...user,
+			userId: res.createdUser.userId,
+			name: res.createdUser.name,
+			email: res.createdUser.email,
+			isLoggedIn: true,
+			token: res.token,
+		});
+	};
 
 	return (
 		<div className={style.container}>
@@ -32,7 +48,7 @@ export default function SignUp() {
 					type="text"
 					placeholder="Name"
 					name="name"
-					value={user.name}
+					value={localUser.name}
 					onChange={handleChange}
 					required
 				/>
@@ -40,7 +56,7 @@ export default function SignUp() {
 					type="email"
 					placeholder="Email"
 					name="email"
-					value={user.email}
+					value={localUser.email}
 					onChange={handleChange}
 					required
 				/>
@@ -48,7 +64,7 @@ export default function SignUp() {
 					type="password"
 					placeholder="Password"
 					name="password"
-					value={user.password}
+					value={localUser.password}
 					onChange={handleChange}
 					required
 				/>

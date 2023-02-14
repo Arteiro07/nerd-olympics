@@ -6,12 +6,12 @@
 }
 
 .card{
-    color: $letter-color;
+    color: $font-color;
     font-size: 25px;
     transition: background-color 0.3s ease-in;
 
     a {
-        color: $letter-color;
+        color: $font-color;
         text-decoration: none;
     }
     width: 100%;

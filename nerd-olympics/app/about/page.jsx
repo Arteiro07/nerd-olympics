@@ -2,6 +2,7 @@ import Image from 'next/image';
 import about_img from '../../public/hotpot.png';
 import style from './about.module.scss'
 
+
 export default function page() {
   return (
     <div className={style.container}>
@@ -16,5 +17,5 @@ export default function page() {
           width={300}
         />
     </div>
-  )
+  );
 }

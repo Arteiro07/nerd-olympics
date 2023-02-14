@@ -1,0 +1,12 @@
+@import "@/utilities/base.scss";
+.container {
+	position: relative;
+}
+
+.logo {
+	color: $title-font-color;
+	transition: all 0.3s ease;
+}
+.logo:hover {
+	color: $title-accent-color;
+}

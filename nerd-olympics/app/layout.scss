@@ -1,19 +1,22 @@
 @import "../utilities/base.scss";
 
-
 * {
-  box-sizing: border-box;
-  margin: 0;
-  padding: 0;
+	box-sizing: border-box;
+	margin: 0;
+	padding: 0;
 }
 
 html {
-    width: 100%;
-    height: 100vh;
-    color: $letter-color;
-    background:  $background-color;
-    overflow: auto;
-    font-family: 'Poppins', sans-serif;
-    @include scrollbars($scrollbar-size, $title-color, $background-color);
- 
+	width: 100%;
+	height: 100vh;
+	color: $font-color;
+	background: $background-color;
+	overflow: auto;
+	font-family: "Poppins", sans-serif;
+	@include scrollbars($scrollbar-size, $title-font-color, $background-color);
+}
+
+a {
+}
+li {
 }

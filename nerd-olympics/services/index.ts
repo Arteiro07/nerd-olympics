@@ -1,9 +1,10 @@
-import axios from "axios";
+const baseURL = "https://apim-nerd-olympics-dev.azure-api.net";
 
-const api = axios.create({
-    baseURL: "https://apim-nerd-olympics-dev.azure-api.net",
-    headers: {"Ocp-Apim-Subscription-Key": process.env.API_KEY, }
+const myHeaders = new Headers();
+myHeaders.append("Content-Type", "application/json");
+myHeaders.append(
+	"Ocp-Apim-Subscription-Key",
+	process.env.NEXT_PUBLIC_API_KEY as string
+);
 
-});
-
-export default api;
+export { baseURL, myHeaders };

@@ -1,16 +1,13 @@
-"use client";
-
-import Player from "./Player";
-import style from "./players.module.scss";
-import { getUsers } from "@/services/users";
-import { useAuth } from "@/context/authContext";
 import { User } from "@/utilities/userTypes";
-import PlayerList from "./PlayerList";
+import React from "react";
 
-export default function Page() {
-	const { user, setUser } = useAuth();
+type PlayerListProps = {
+	user: User;
+};
 
-	return <></>;
+export default async function PlayerList(props: PlayerListProps) {
+	return <div>PlayerList</div>;
+
 	//const res = await getUsers(user.token);
 }
 /*

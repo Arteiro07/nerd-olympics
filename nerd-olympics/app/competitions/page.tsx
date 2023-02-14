@@ -1,19 +1,13 @@
-import style from "./page.module.scss";
-import Competition from "./Competition";
-import { CompetitionDto } from "../../utilities/types";
-import api from "@/services";
+import { getCompetitions } from "@/services/competitions";
+import { CompetitionDto } from "@/utilities/types";
+import Competitions from "./Competitions";
 
 export default async function page() {
 	//get a list of competitions from the back end
-	const res = await api.get(
-		`https://apim-nerd-olympics-dev.azure-api.net/competitions/all`
-	);
-
+	const competitions: CompetitionDto[] = await getCompetitions();
 	return (
-		<div className={style.container}>
-			{res.data.map((competition: CompetitionDto) => (
-				<Competition key={competition.id} {...competition} />
-			))}
-		</div>
+		<>
+			<Competitions competitions={competitions} />
+		</>
 	);
 }

@@ -1,11 +1,3 @@
-import { Url } from "url";
-
-export type User = {
-	name: string;
-	email: string;
-	password: string;
-};
-
 export type UserDetailed = {
 	id: number;
 	firstName: string;
@@ -16,8 +8,17 @@ export type UserDetailed = {
 };
 
 export type CompetitionDto = {
-	id: number;
-	title: string;
+	competitionId: number;
+	name: string;
 	description: string;
 	createdDate: Date;
+	userId: number;
+};
+
+export const CompetitionDtoInitialState: CompetitionDto = {
+	competitionId: 0,
+	name: "",
+	description: "",
+	createdDate: new Date(),
+	userId: 0,
 };
