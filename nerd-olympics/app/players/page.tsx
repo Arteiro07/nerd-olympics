@@ -5,24 +5,11 @@ import style from "./players.module.scss";
 import { getUsers } from "@/services/users";
 import { useAuth } from "@/context/authContext";
 import { User } from "@/utilities/userTypes";
-import PlayerList from "./PlayerList";
 
-export default function Page() {
+export default async function Page() {
 	const { user, setUser } = useAuth();
+	const res = await getUsers(user.token);
 
-	return <></>;
-	//const res = await getUsers(user.token);
-}
-/*
-if ("error" in res) {
-	console.error(res.error);
-	return (
-		<h1>
-			Error fetching the Users try refreshing or check the console for further
-			information
-		</h1>
-	);
-} else {
 	return (
 		<div className={style.container}>
 			{res.map((user: User) => (
@@ -30,4 +17,8 @@ if ("error" in res) {
 			))}
 		</div>
 	);
-}*/
+}
+/*
+
+
+*/

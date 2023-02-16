@@ -50,7 +50,32 @@ export default function Competitions(props: CompetitionListProps) {
 				className={style.addCompetition}
 				onClick={() => setNewCompDisplay(!newCompDisplay)}
 			/>
-			{newCompDisplay ? <NewComp /> : <></>}
+			{newCompDisplay ? (
+				<div className={style.newCompContainer}>
+					<NewComp />
+				</div>
+			) : (
+				<></>
+			)}
 		</div>
 	);
 }
+/*
+onClick={(e) => {
+	setNewCompDisplay(!newCompDisplay);
+}}
+*/
+
+/*
+const refundDetailsRef = useRef<HTMLDivElement>(null) 
+const refundStatus = salesOrder.refundError ? 'REFUNDED_STATUS_ERROR' : salesOrder.refundStatus  
+useEffect(() => {    
+	const dismissComments = (event: MouseEvent) => {      
+		if (isOpened && refundDetailsRef.current && !refundDetailsRef.current.contains(event.target as unknown as Node))        
+			setIsOpened(false)
+	    }
+		document.addEventListener('mousedown', dismissComments)
+		return () => {      document.removeEventListener('mousedown', dismissComments)    }  
+}, [refundDetailsRef, isOpened])
+
+*/

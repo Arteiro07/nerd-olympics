@@ -1,33 +1,33 @@
 @import "@/utilities/base.scss";
 
 .competitionCard {
-    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-    border-radius: 10px;
-    overflow: hidden;
-    text-align: center;
-    transition: all 0.3s ease-in-out;
-    background-color: lighten($background-color, 10%);
-    height: 200px;
-    padding: 10px;
-    margin: 10px;
-    position: relative;
-  }
-  
-  .competitionCard:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 4px 8px rgba(0,0,0,0.2);
-  }
+	box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+	border-radius: 10px;
+	overflow: hidden;
+	text-align: center;
+	transition: all 0.3s ease-in-out;
+	background-color: lighten($background-color, 10%);
+	height: 200px;
+	min-width: 240px;
+	padding: 10px;
+	margin: 10px;
+	position: relative;
+}
 
-  .button {
-    background-color: lighten($background-color, 40%);
-    position: absolute;
-    bottom: 0;
-    width: 100%;
-    left: 0;
-    height: 20%;
-    border: none;
-  }
-  .button:hover {
-    background-color: lighten($background-color, 30%);
-  }
+.competitionCard:hover {
+	transform: translateY(-5px);
+	box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
 
+.button {
+	background-color: lighten($background-color, 40%);
+	position: absolute;
+	bottom: 0;
+	width: 100%;
+	left: 0;
+	height: 20%;
+	border: none;
+}
+.button:hover {
+	background-color: lighten($background-color, 30%);
+}

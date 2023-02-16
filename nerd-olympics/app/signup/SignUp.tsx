@@ -14,6 +14,7 @@ export default function SignUp() {
 	const { user, setUser } = useAuth();
 	const [localUser, setLocalUser] = useState<User>(initialState);
 	const [disabled, setDisabled] = useState(false);
+	const [confirmPassword, setConfirmPassword] = useState("");
 
 	useEffect(() => {
 		setDisabled(!localUser.email || !localUser.password || !localUser.name);
@@ -24,6 +25,10 @@ export default function SignUp() {
 
 	const handleSubmit = (e: FormEvent) => {
 		e.preventDefault();
+		if (localUser.password !== confirmPassword) {
+			alert("Passwords do not match");
+			return;
+		}
 		signUp(localUser);
 	};
 
@@ -32,7 +37,7 @@ export default function SignUp() {
 
 		setUser({
 			...user,
-			userId: res.createdUser.userId,
+			id: res.createdUser.id,
 			name: res.createdUser.name,
 			email: res.createdUser.email,
 			isLoggedIn: true,
@@ -66,6 +71,14 @@ export default function SignUp() {
 					name="password"
 					value={localUser.password}
 					onChange={handleChange}
+					required
+				/>
+				<input
+					type="password"
+					placeholder="Password"
+					name="confirmPassword"
+					value={confirmPassword}
+					onChange={(e) => setConfirmPassword(e.target.value)}
 					required
 				/>
 				<input

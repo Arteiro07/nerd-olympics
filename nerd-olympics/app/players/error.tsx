@@ -1,8 +1,10 @@
-'use client'
-import ErrorPage from "../error";
-import React from 'react'
+"use client";
+import React from "react";
 
-export default function error() { (
-    <ErrorPage></ErrorPage>
-  )
+export default function error() {
+	return (
+		<div>
+			<h1>Error</h1>
+		</div>
+	);
 }

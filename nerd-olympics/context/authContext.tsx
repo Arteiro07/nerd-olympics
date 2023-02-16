@@ -28,10 +28,7 @@ export default function AuthProvider({
 	);
 
 	useEffect(() => {
-		console.log(user);
-		console.log(JSON.stringify(user));
 		sessionStorage.setItem("user", JSON.stringify(user));
-		console.log(sessionStorage.getItem("user"));
 	}, [user]);
 
 	return (

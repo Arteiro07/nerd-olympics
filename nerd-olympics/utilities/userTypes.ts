@@ -6,11 +6,9 @@ export type User = {
 	id: number;
 	token: string;
 	avatarId: number;
-	userId: number;
 };
 
 export const initialState: User = {
-	userId: 0,
 	name: "",
 	password: "",
 	email: "",

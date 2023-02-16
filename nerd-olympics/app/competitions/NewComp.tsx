@@ -3,6 +3,7 @@ import { useState, useEffect, ChangeEvent, FormEvent } from "react";
 import { useAuth } from "@/context/authContext";
 import { CompetitionDto, CompetitionDtoInitialState } from "@/utilities/types";
 import Competition from "./Competition";
+import { newComp } from "@/services/compUtils";
 
 export default function NewComp() {
 	const { user, setUser } = useAuth();
@@ -18,8 +19,11 @@ export default function NewComp() {
 	const handleChange = (event: ChangeEvent<HTMLInputElement>) =>
 		setLocalComp({ ...localComp, [event.target.name]: event.target.value });
 
-	const handleSubmit = (e: FormEvent) => {
+	const handleSubmit = async (e: FormEvent) => {
 		e.preventDefault();
+		setLocalComp({ ...localComp, userId: user.id });
+		const comp = await newComp(localComp, user.token);
+		console.log(comp);
 	};
 
 	return (

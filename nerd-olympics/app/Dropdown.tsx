@@ -31,6 +31,7 @@ export default function Dropdow(props: DropdownProps) {
 
 		setUser({
 			...user,
+			id: res.user.id,
 			name: res.user.name,
 			email: res.user.email,
 			isLoggedIn: true,
