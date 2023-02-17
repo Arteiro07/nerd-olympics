@@ -23,10 +23,11 @@ export default function AuthProvider({
 }: {
 	children: React.ReactNode;
 }) {
-	const [user, setUser] = useState(
-		JSON.parse(sessionStorage.getItem("user")!) || initialState
-	);
+	const [user, setUser] = useState(initialState);
 
+	useEffect(() => {
+		setUser(JSON.parse(sessionStorage.getItem("user")!));
+	}, []);
 	useEffect(() => {
 		sessionStorage.setItem("user", JSON.stringify(user));
 	}, [user]);
