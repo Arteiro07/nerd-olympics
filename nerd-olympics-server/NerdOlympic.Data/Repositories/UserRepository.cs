@@ -18,7 +18,7 @@ namespace NerdOlympics.Data.Repositories
 
         public async Task<List<User>> GetUsers()
         {
-            return await _context.Users!.ToListAsync();
+            return await _context.Users!.AsNoTracking().ToListAsync();
         }
 
         public async Task<User?> CreateUser(User user)
@@ -37,27 +37,27 @@ namespace NerdOlympics.Data.Repositories
         {
             string hashedPassword = PasswordHasher.HashPassword(password);
 
-            return await _context.Users!.FirstOrDefaultAsync(x => x.Email == emailAddress && x.Password == hashedPassword);
+            return await _context.Users!.AsNoTracking().FirstOrDefaultAsync(x => x.Email == emailAddress && x.Password == hashedPassword);
         }
 
         public async Task<User?> GetUsers(string email)
         {
-            return await _context.Users!.FirstOrDefaultAsync(x => x.Email == email);
+            return await _context.Users!.AsNoTracking().FirstOrDefaultAsync(x => x.Email == email);
         }
 
         public async Task<bool> CheckEmailExists(string email)
         {
-            return await _context.Users!.AnyAsync(x => x.Email!.ToLower() == email.ToLower());
+            return await _context.Users!.AsNoTracking().AnyAsync(x => x.Email!.ToLower() == email.ToLower());
         }
 
         public async Task<List<int>> GetUserCompetitionIds(int userId)
         {
-            return await _context.Competitions!.Where(x => x.UserId == userId).Select(x => x.CompetitionId).ToListAsync();
+            return await _context.Competitions!.AsNoTracking().Where(x => x.UserId == userId).Select(x => x.CompetitionId).ToListAsync();
         }
 
         public async Task<bool> UserExists(int userId)
         {
-            return await _context.Users!.AnyAsync(x => x.UserId == userId);
+            return await _context.Users!.AsNoTracking().AnyAsync(x => x.UserId == userId);
         }
     }
 }

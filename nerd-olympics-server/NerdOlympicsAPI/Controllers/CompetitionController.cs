@@ -1,6 +1,6 @@
 ﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-using NerdOlympics.Data.Enum;
+using NerdOlympics.Data.Enum.Security;
 using NerdOlympics.Data.Models;
 using NerdOlympicsAPI.Interfaces;
 
@@ -10,20 +10,26 @@ namespace NerdOlympics.Controllers;
 [Route("competitions")]
 public class CompetitionController : Controller
 {
-    private readonly ILogger<CompetitionController> _logger;
     private readonly ICompetitionsService _competitionsService;
 
-    public CompetitionController(ILogger<CompetitionController> logger, ICompetitionsService competitionsService)
+    public CompetitionController(ICompetitionsService competitionsService)
     {
-        _logger = logger;
         _competitionsService = competitionsService;
     }
 
     [HttpGet]
     [Route("all")]
+    [Authorize(Policies.Authenticated)]
     public async Task<IActionResult> GetCompetitions()
     {
         return await _competitionsService.GetCompetitions();
+    }
+    
+    [HttpGet]
+    [Authorize(Policies.Authenticated)]
+    public async Task<IActionResult> GetCompetition(int competitionId)
+    {
+        return await _competitionsService.GetCompetition(competitionId);
     }
 
     [HttpPost]

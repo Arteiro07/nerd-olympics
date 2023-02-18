@@ -19,6 +19,11 @@ namespace NerdOlympicsAPI.Services
             return new OkObjectResult(await _competitionRepository.GetCompetitions());
         }
 
+        public async Task<IActionResult> GetCompetition(int competitionId)
+        {
+            return new OkObjectResult(await _competitionRepository.GetCompetition(competitionId));
+        }
+
         public async Task<IActionResult> CreateCompetition(Competition competition)
         {
             return new OkObjectResult(await _competitionRepository.CreateCompetition(competition));

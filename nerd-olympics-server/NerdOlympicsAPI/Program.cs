@@ -13,6 +13,7 @@ using System.Text;
 using NerdOlympics.API.Interfaces;
 using NerdOlympics.API.Services;
 using NerdOlympics.Data;
+using NerdOlympics.Data.Enum.Security;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -50,9 +51,9 @@ builder.Services.AddSwaggerGen(c =>
 
 builder.Services.AddAuthorization(options =>
 {
-    options.AddPolicy(Custom.Policies.Authenticated, policy => policy.RequireClaim(Custom.ClaimTypes.Authenticated));
-    options.AddPolicy(Custom.Policies.Admin, policy => policy.RequireClaim(Custom.ClaimTypes.Admin));
-    options.AddPolicy(Custom.Policies.CompetitionAdmin, policy => policy.RequireClaim(Custom.ClaimTypes.CompetitionAdmin));
+    options.AddPolicy(Policies.Authenticated, policy => policy.RequireClaim(ClaimTypes.Authenticated));
+    options.AddPolicy(Policies.Admin, policy => policy.RequireClaim(ClaimTypes.Admin));
+    options.AddPolicy(Policies.CompetitionAdmin, policy => policy.RequireClaim(ClaimTypes.CompetitionAdmin));
 });
 
 builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)

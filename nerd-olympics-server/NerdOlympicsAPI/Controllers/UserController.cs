@@ -1,6 +1,6 @@
 ﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-using NerdOlympics.Data.Enum;
+using NerdOlympics.Data.Enum.Security;
 using NerdOlympics.Data.Models;
 using NerdOlympicsAPI.Interfaces;
 
@@ -20,7 +20,7 @@ public class UserController : Controller
     [HttpGet]
     [Route("all")]
     [Authorize(Policies.Authenticated)]
-    [Authorize(Policies.Admin)]
+    //[Authorize(Policies.Admin)]
     public async Task<IActionResult> GetUsers()
     {
         return await _userService.GetUsers();

@@ -25,10 +25,10 @@ namespace NerdOlympicsAPI.Services.Security
             var key = new SymmetricSecurityKey(System.Text.Encoding.UTF8.GetBytes(_secret));
             var creds = new SigningCredentials(key, SecurityAlgorithms.HmacSha256);
 
-            var claims = new List<Claim>() { new Claim(Custom.ClaimTypes.Authenticated, userId.ToString()) };
+            var claims = new List<Claim>() { new Claim(Custom.Security.ClaimTypes.Authenticated, userId.ToString()) };
 
             if(isAdmin)
-                claims.Add(new Claim(Custom.ClaimTypes.Admin, userId.ToString()));
+                claims.Add(new Claim(Custom.Security.ClaimTypes.Admin, userId.ToString()));
 
             // TODO add here the claim with the competitions that the user manages/can edit
 

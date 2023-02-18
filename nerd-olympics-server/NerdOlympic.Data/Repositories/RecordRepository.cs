@@ -27,7 +27,7 @@ namespace NerdOlympics.Data.Repositories
 
         public async Task<bool> DeleteUserRecord(int recordId)
         {
-            var record = await _context.Records!.FirstOrDefaultAsync(x => x.RecordId == recordId);
+            var record = await _context.Records!.AsNoTracking().FirstOrDefaultAsync(x => x.RecordId == recordId);
             if (record != null)
             {
                 _context.Records!.Remove(record);
@@ -53,17 +53,17 @@ namespace NerdOlympics.Data.Repositories
 
         public async Task<bool> Exists(int recordId)
         {
-            return await _context.Records!.AnyAsync(x => x.RecordId == recordId);
+            return await _context.Records!.AsNoTracking().AnyAsync(x => x.RecordId == recordId);
         }
 
         public async Task<List<Record>> GetCompetitionRecords(int competitionId)
         {
-            return await _context.Records!.Where(x => x.CompetitionId == competitionId).ToListAsync();
+            return await _context.Records!.AsNoTracking().Where(x => x.CompetitionId == competitionId).ToListAsync();
         }
 
         public async Task<List<Record>> GetUserRecords(int userId)
         {
-            return await _context.Records!.Where(x => x.UserId == userId).ToListAsync();
+            return await _context.Records!.AsNoTracking().Where(x => x.UserId == userId).ToListAsync();
         }
 
     }
