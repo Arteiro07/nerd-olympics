@@ -1,16 +1,19 @@
-using Data;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.OpenApi.Models;
 using Microsoft.EntityFrameworkCore;
-using Data.Interfaces;
-using Data.Repositories;
+using NerdOlympics.Data.Interfaces;
+using NerdOlympics.Data.Repositories;
 using NerdOlympicsAPI.Interfaces;
 using NerdOlympicsAPI.Services;
 using NerdOlympicsAPI.Services.Security;
-using Custom = NerdOlympicsData.Enum;
+using Custom = NerdOlympics.Data.Enum;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.IdentityModel.Tokens;
 using System.Text;
+using NerdOlympics.API.Interfaces;
+using NerdOlympics.API.Services;
+using NerdOlympics.Data;
+using NerdOlympics.Data.Enum.Security;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -26,6 +29,9 @@ builder.Services.AddScoped<ICompetitionsService,CompetitionsService>();
 
 builder.Services.AddScoped<IUserRepository, UserRepository>();
 builder.Services.AddScoped<IUserService, UserService>();
+
+builder.Services.AddScoped<IRecordService, RecordService>();
+builder.Services.AddScoped<IRecordRepository, RecordRepository>();
 
 builder.Services.AddSingleton<IJwtTokenService,JwtTokenService>();
 
@@ -45,9 +51,9 @@ builder.Services.AddSwaggerGen(c =>
 
 builder.Services.AddAuthorization(options =>
 {
-    options.AddPolicy(Custom.Policies.Authenticated, policy => policy.RequireClaim(Custom.ClaimTypes.Authenticated));
-    options.AddPolicy(Custom.Policies.Admin, policy => policy.RequireClaim(Custom.ClaimTypes.Admin));
-    options.AddPolicy(Custom.Policies.CompetitionAdmin, policy => policy.RequireClaim(Custom.ClaimTypes.CompetitionAdmin));
+    options.AddPolicy(Policies.Authenticated, policy => policy.RequireClaim(ClaimTypes.Authenticated));
+    options.AddPolicy(Policies.Admin, policy => policy.RequireClaim(ClaimTypes.Admin));
+    options.AddPolicy(Policies.CompetitionAdmin, policy => policy.RequireClaim(ClaimTypes.CompetitionAdmin));
 });
 
 builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)

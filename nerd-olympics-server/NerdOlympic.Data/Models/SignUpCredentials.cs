@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace NerdOlympicsData.Models
+namespace NerdOlympics.Data.Models
 {
     public class SignUpCredentials
     {

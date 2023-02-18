@@ -1,6 +1,6 @@
-﻿using Data.Interfaces;
-using Data.Models;
+﻿using NerdOlympics.Data.Models;
 using Microsoft.AspNetCore.Mvc;
+using NerdOlympics.Data.Interfaces;
 using NerdOlympicsAPI.Interfaces;
 
 namespace NerdOlympicsAPI.Services
@@ -17,6 +17,11 @@ namespace NerdOlympicsAPI.Services
         public async Task<IActionResult> GetCompetitions()
         {
             return new OkObjectResult(await _competitionRepository.GetCompetitions());
+        }
+
+        public async Task<IActionResult> GetCompetition(int competitionId)
+        {
+            return new OkObjectResult(await _competitionRepository.GetCompetition(competitionId));
         }
 
         public async Task<IActionResult> CreateCompetition(Competition competition)

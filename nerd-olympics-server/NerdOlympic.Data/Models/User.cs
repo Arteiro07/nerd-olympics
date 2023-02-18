@@ -1,6 +1,6 @@
 using System.Text.Json.Serialization;
 
-namespace Data.Models
+namespace NerdOlympics.Data.Models
 {
     public class User
     {

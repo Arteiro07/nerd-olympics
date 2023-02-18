@@ -1,7 +1,9 @@
+using NerdOlympics.Data.Enum.Competitions;
+using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Text.Json.Serialization;
 
-namespace Data.Models
+namespace NerdOlympics.Data.Models
 {
     public class Competition 
     {
@@ -9,10 +11,10 @@ namespace Data.Models
         public string? Name {get;set;}    
         public string? Description {get;set;}
         public DateTime? CreatedDate { get; set; }
+        public ClassificationType ClassificationType { get; set; }
+        public MeasurementType MeasurementType { get; set; }
         
-        [JsonIgnore]
-        [ForeignKey("UserId")]
-        public virtual User Owner { get; set; } = new();
+        [Display(Name = "User")]
         public int UserId { get; set; }
     }
 }
