@@ -1,28 +1,28 @@
 "use client";
 import { useRef } from "react";
-import { Canvas, useFrame } from "@react-three/fiber";
-import { Mesh } from "three";
+import { useLoader, useFrame } from "@react-three/fiber";
+import { GLTFLoader } from "three/examples/jsm/loaders/GLTFLoader";
+import { OrbitControls } from "@react-three/drei";
 
 export default function Brain() {
 	const meshRef = useRef<any>();
+	const gltf = useLoader(GLTFLoader, "/brain.gltf");
 
 	useFrame(() => {
 		if (!meshRef.current) {
 			return;
 		}
 
-		meshRef.current.rotation.x += 0.01;
-		meshRef.current.rotation.y += 0.01;
+		meshRef.current.rotation.x += 0.001;
+		meshRef.current.rotation.y += 0.001;
 	});
 
 	return (
-		<Canvas>
+		<>
+			<OrbitControls target={[0, 0, 0]} maxPolarAngle={1.45} />
 			<ambientLight intensity={0.1} />
-			<directionalLight color="red" position={[0, 0, 5]} />
-			<mesh ref={meshRef}>
-				<boxGeometry args={[2, 2, 2]} />
-				<meshStandardMaterial />
-			</mesh>
-		</Canvas>
+			<directionalLight color="orange" position={[0, 0, 5]} />
+			<primitive object={gltf.scene} ref={meshRef} />
+		</>
 	);
 }
