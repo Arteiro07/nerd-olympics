@@ -23,6 +23,7 @@ public class CompetitionController : Controller
     [Route("all")]
     [ProducesResponseType(typeof(IActionResult), 200)]
     [ProducesResponseType(typeof(ErrorResponse), 400)]
+    [ProducesResponseType(typeof(ErrorResponse), 500)]
     //[Authorize(Policies.Authenticated)]
     public async Task<IActionResult> GetCompetitions()
     {
@@ -32,6 +33,7 @@ public class CompetitionController : Controller
     [HttpGet]
     [ProducesResponseType(typeof(IActionResult), 200)]
     [ProducesResponseType(typeof(ErrorResponse), 400)]
+    [ProducesResponseType(typeof(ErrorResponse), 500)]
     //[Authorize(Policies.Authenticated)]
     public async Task<IActionResult> GetCompetition(int competitionId)
     {
@@ -42,6 +44,7 @@ public class CompetitionController : Controller
     [Route("")]
     [ProducesResponseType(typeof(IActionResult), 200)]
     [ProducesResponseType(typeof(ErrorResponse), 400)]
+    [ProducesResponseType(typeof(ErrorResponse), 500)]
     [Authorize(Policies.Authenticated)]
     public async Task<IActionResult> CreateCompetition([FromBody] Competition competition)
     {
@@ -52,6 +55,7 @@ public class CompetitionController : Controller
     [Route("")]
     [ProducesResponseType(typeof(IActionResult), 200)]
     [ProducesResponseType(typeof(ErrorResponse), 400)]
+    [ProducesResponseType(typeof(ErrorResponse), 500)]
     [Authorize(Policies.Authenticated)]
     public async Task<IActionResult> UpdateCompetition([FromBody] Competition competition)
     {

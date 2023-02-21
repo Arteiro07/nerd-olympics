@@ -21,6 +21,7 @@ namespace NerdOlympics.API.Controllers
         [Route("user")]
         [ProducesResponseType(typeof(IActionResult), 200)]
         [ProducesResponseType(typeof(ErrorResponse), 400)]
+        [ProducesResponseType(typeof(ErrorResponse), 500)]
         //[Authorize(Policies.Authenticated)]
         public async Task<IActionResult> GetUserRecords(int userId) 
         { 
@@ -31,6 +32,7 @@ namespace NerdOlympics.API.Controllers
         [Route("competition")]
         [ProducesResponseType(typeof(IActionResult), 200)]
         [ProducesResponseType(typeof(ErrorResponse), 400)]
+        [ProducesResponseType(typeof(ErrorResponse), 500)]
         //[Authorize(Policies.Authenticated)]
         public async Task<IActionResult> GetCompetitionRecords(int competitionId)
         {
@@ -41,6 +43,7 @@ namespace NerdOlympics.API.Controllers
         [Route("")]
         [ProducesResponseType(typeof(IActionResult), 200)]
         [ProducesResponseType(typeof(ErrorResponse), 400)]
+        [ProducesResponseType(typeof(ErrorResponse), 500)]
         [Authorize(Policies.Authenticated)]
         public async Task<IActionResult> CreateRecord([FromBody] Record record)
         {
@@ -51,6 +54,7 @@ namespace NerdOlympics.API.Controllers
         [Route("")]
         [ProducesResponseType(typeof(IActionResult), 200)]
         [ProducesResponseType(typeof(ErrorResponse), 400)]
+        [ProducesResponseType(typeof(ErrorResponse), 500)]
         [Authorize(Policies.Authenticated)]
         public async Task<IActionResult> UpdateRecord([FromBody] Record record)
         {
@@ -61,6 +65,7 @@ namespace NerdOlympics.API.Controllers
         [Route("")]
         [ProducesResponseType(typeof(IActionResult), 200)]
         [ProducesResponseType(typeof(ErrorResponse), 400)]
+        [ProducesResponseType(typeof(ErrorResponse), 500)]
         [Authorize(Policies.Authenticated)]
         public async Task<IActionResult> DeleteRecord(int recordId)
         {

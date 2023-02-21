@@ -37,9 +37,9 @@ namespace NerdOlympics.API.Services.ErrorHandling
                     errorResponse = new ErrorResponse
                     {
                         ErrorCode = 500,
-                        ErrorMessage = "Unexpected error, please contact support.",
+                        ErrorMessage = ErrorMessage.GENERIC_DB_ERROR,
                     };
-                    context.Response.StatusCode = 500; // Internal Server Error
+                    context.Response.StatusCode = errorResponse.ErrorCode; // Internal Server Error
                 }
 
                 // Serialize the error response to JSON and write it to the response body

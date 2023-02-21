@@ -23,6 +23,7 @@ public class UserController : Controller
     [Authorize(Policies.Authenticated)]
     [ProducesResponseType(typeof(IActionResult), 200)]
     [ProducesResponseType(typeof(ErrorResponse), 400)]
+    [ProducesResponseType(typeof(ErrorResponse), 500)]
     public async Task<IActionResult> GetUsers()
     {
         return await _userService.GetUsers();
@@ -33,6 +34,7 @@ public class UserController : Controller
     [Authorize(Policies.Authenticated)]
     [ProducesResponseType(typeof(IActionResult), 200)]
     [ProducesResponseType(typeof(ErrorResponse), 400)]
+    [ProducesResponseType(typeof(ErrorResponse), 500)]
     public async Task<IActionResult> GetUserbyEmail(string email)
     {
          return await _userService.GetUser(email);
@@ -42,6 +44,7 @@ public class UserController : Controller
     [Route("registration")]
     [ProducesResponseType(typeof(IActionResult), 200)]
     [ProducesResponseType(typeof(ErrorResponse), 400)]
+    [ProducesResponseType(typeof(ErrorResponse), 500)]
     public async Task<IActionResult> CreateUser([FromBody] SignUpCredentials user)
     {
         return await _userService.CreateUser(user);         
@@ -51,6 +54,7 @@ public class UserController : Controller
     [Route("authentication")]
     [ProducesResponseType(typeof(IActionResult), 200)]
     [ProducesResponseType(typeof(ErrorResponse), 400)]
+    [ProducesResponseType(typeof(ErrorResponse), 500)]
     public async Task<IActionResult> Authenticate([FromBody] LoginCredentials user)
     {
         return await _userService.Authenticate(user);
