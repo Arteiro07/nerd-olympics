@@ -78,6 +78,11 @@ namespace NerdOlympics.Data.Repositories
         public async Task<bool> CompetitionExists(int competitionId)
         {
             return await _context.Competitions!.AsNoTracking().AnyAsync(x => x.CompetitionId == competitionId);
+        }        
+        
+        public async Task<bool> CompetitionNameExists(string competitionName)
+        {
+            return await _context.Competitions!.AsNoTracking().AnyAsync(x => x.Name == competitionName);
         }
     }
 }

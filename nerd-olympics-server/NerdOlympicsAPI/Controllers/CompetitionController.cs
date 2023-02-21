@@ -40,6 +40,17 @@ public class CompetitionController : Controller
         return await _competitionsService.GetCompetition(competitionId);
     }
 
+    [HttpGet]
+    [Route("validation")]
+    [ProducesResponseType(typeof(IActionResult), 200)]
+    [ProducesResponseType(typeof(ErrorResponse), 400)]
+    [ProducesResponseType(typeof(ErrorResponse), 500)]
+    //[Authorize(Policies.Authenticated)]
+    public async Task<IActionResult> CompetitionNameExists(string competitionName)
+    {
+        return await _competitionsService.CompetitionNameExists(competitionName);
+    }
+
     [HttpPost]
     [Route("")]
     [ProducesResponseType(typeof(IActionResult), 200)]

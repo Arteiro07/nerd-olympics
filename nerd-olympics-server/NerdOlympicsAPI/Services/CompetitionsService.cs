@@ -38,5 +38,10 @@ namespace NerdOlympicsAPI.Services
             
             return new OkObjectResult(await _competitionRepository.UpdateCompetition(competition));
         }
+
+        public async Task<IActionResult> CompetitionNameExists(string competitionName)
+        {
+            return new OkObjectResult(await _competitionRepository.CompetitionNameExists(competitionName));
+        }
     }
 }

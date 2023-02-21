@@ -67,7 +67,7 @@ namespace NerdOlympics.Data.Repositories
 
         public async Task<bool> CheckEmailExists(string email)
         {
-            return await _context.Users!.AsNoTracking().AnyAsync(x => x.Email!.ToLower(System.Globalization.CultureInfo.CurrentCulture) == email.ToLower(System.Globalization.CultureInfo.CurrentCulture));            
+            return await _context.Users!.AsNoTracking().AnyAsync(x => x.Email!.ToLower() == email.ToLower());            
         }
 
         public async Task<List<int>> GetUserCompetitionIds(int userId)

@@ -37,7 +37,17 @@ public class UserController : Controller
     [ProducesResponseType(typeof(ErrorResponse), 500)]
     public async Task<IActionResult> GetUserbyEmail(string email)
     {
-         return await _userService.GetUser(email);
+        return await _userService.GetUser(email);
+    }
+
+    [HttpGet]
+    [Route("validation")]
+    [ProducesResponseType(typeof(IActionResult), 200)]
+    [ProducesResponseType(typeof(ErrorResponse), 400)]
+    [ProducesResponseType(typeof(ErrorResponse), 500)]
+    public async Task<IActionResult> EmailInUse(string email)
+    {
+        return await _userService.EmailInUse(email);
     }
 
     [HttpPost]

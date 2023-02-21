@@ -10,5 +10,6 @@ namespace NerdOlympics.Data.Interfaces
         Task<bool> UserOwnsCompetition(string userId, int competitionId);
         Task<Competition> UpdateCompetition(Competition competition);
         Task<bool> CompetitionExists(int competitionId);
+        Task<bool> CompetitionNameExists(string competitionName);
     }
 }

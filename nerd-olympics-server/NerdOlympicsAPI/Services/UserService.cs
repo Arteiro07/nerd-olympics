@@ -63,5 +63,10 @@ namespace NerdOlympicsAPI.Services
         {
             return new OkObjectResult(await _userRepository.GetUser(email));
         }
+
+        public async Task<IActionResult> EmailInUse(string email)
+        {
+            return new OkObjectResult(await _userRepository.CheckEmailExists(email));
+        }
     }
 }

@@ -9,5 +9,6 @@ namespace NerdOlympicsAPI.Interfaces
         Task<IActionResult> GetCompetition(int competitionId);
         Task<IActionResult> CreateCompetition(Competition competition);
         Task<IActionResult> UpdateCompetition(Competition competition, string userId);
+        Task<IActionResult> CompetitionNameExists(string competitionName);
     }
 }
