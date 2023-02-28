@@ -1,31 +1,13 @@
 @import "@/utilities/base.scss";
 
 .container {
-	position: fixed;
-	top: 0;
-	left: 0;
-	display: flex;
-	align-items: center;
-	justify-content: center;
-	width: 100vw;
-	height: 100vh;
-}
-
-.modalContainer {
-	position: fixed;
-	top: $navbar-height;
-	right: 0;
-	background-color: lighten($background-color, 10%);
+	padding: 20px;
 	height: 250px;
 	width: 350px;
-	border-radius: 10px;
-	border-top-right-radius: 0px;
-	opacity: 1;
-	padding: 10px;
+	margin: auto;
 	display: flex;
 	justify-content: center;
 	flex-direction: column;
-	cursor: auto;
 
 	form {
 		display: flex;
@@ -63,6 +45,7 @@
 	opacity: 1;
 	transition: 0.3s;
 	font-size: 20px;
+	margin: auto;
 }
 
 .signup:hover {
@@ -86,14 +69,4 @@
 	background-color: darken($background-color, 5%);
 	color: $title-accent-color;
 	opacity: 1;
-}
-.modalOverlay {
-	position: absolute;
-	top: 0;
-	left: 0;
-	width: 100vw;
-	height: 100%;
-	opacity: 0.7;
-	background-color: lighten($background-color, 20%);
-	cursor: pointer;
 }

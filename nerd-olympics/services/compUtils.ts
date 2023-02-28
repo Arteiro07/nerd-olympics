@@ -17,6 +17,7 @@ export async function newComp(
 
 		if (res.ok) {
 			// refresh?
+			alert("Submited sucessfully");
 			return await res.json();
 		}
 
@@ -83,3 +84,39 @@ export async function editComp(
 	apiCompetition: CompetitionDto,
 	token: string
 ): Promise<void> {}
+
+export async function checkComp(name: string): Promise<boolean> {
+	try {
+		const res = await fetch(baseURL + "/competitions/validation", {
+			method: "GET",
+			headers: myHeaders,
+			body: `competitionName: ${name}`,
+		});
+		console.log(await res.json());
+
+		if (res.ok) {
+			// refresh?
+			return true;
+		}
+
+		if (!res.ok) {
+			throw new Error("Bad response from server", {
+				cause: {
+					res,
+				},
+			});
+		}
+	} catch (err: any) {
+		//replace any
+		switch (err.cause.res?.status) {
+			case 404:
+				throw new Error();
+			case 401:
+				throw new Error();
+			default:
+				throw new Error();
+		}
+	}
+
+	return false;
+}

@@ -1,0 +1,41 @@
+@import "@/utilities/base.scss";
+
+.modalContainer {
+	position: fixed;
+	top: 0;
+	left: 0;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	width: 100vw;
+	height: 100vh;
+}
+.modalOverlay {
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	opacity: 0.7;
+	background-color: lighten($background-color, 20%);
+	cursor: pointer;
+}
+
+.modalClose {
+	position: absolute;
+	top: 10px;
+	right: 10px;
+	transition: all 250ms ease-in-out;
+	color: $title-font-color;
+	background-color: transparent;
+	border: none;
+	font-size: 25px;
+}
+
+.modalClose:hover {
+	color: $title-accent-color;
+	transform: scale(1.2);
+}
+.modalBox {
+	position: relative;
+}

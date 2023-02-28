@@ -8,22 +8,30 @@ import { IoAddCircleOutline } from "react-icons/io5";
 
 import style from "./competitions.module.scss";
 import NewComp from "./NewComp";
+import Modal from "@/components/Modal";
+import { useAuth } from "@/context/authContext";
 
 type CompetitionListProps = {
 	competitions: CompetitionDto[];
 };
 
 export default function Competitions(props: CompetitionListProps) {
+	const { user, setUser } = useAuth();
 	const [query, setQuery] = useState("");
 	const [competitions, setCompetitions] = useState(props.competitions);
-	const [newCompDisplay, setNewCompDisplay] = useState(false);
+	const [display, setDisplay] = useState(false);
 
 	const handleQuery = (e: React.ChangeEvent<HTMLInputElement>) => {
 		setQuery(e.target.value);
-
 		setCompetitions((prevstate) =>
 			props.competitions.filter(
-				(c) => c.name?.includes(query) || c.description?.includes(query)
+				(c) =>
+					c.name
+						?.toLocaleLowerCase()
+						.includes(e.target.value.toLocaleLowerCase()) ||
+					c.description
+						?.toLocaleLowerCase()
+						.includes(e.target.value.toLocaleLowerCase())
 			)
 		);
 	};
@@ -46,36 +54,22 @@ export default function Competitions(props: CompetitionListProps) {
 					<Competition key={competition.competitionId} {...competition} />
 				))}
 			</div>
-			<IoAddCircleOutline
-				className={style.addCompetition}
-				onClick={() => setNewCompDisplay(!newCompDisplay)}
-			/>
-			{newCompDisplay ? (
-				<div className={style.newCompContainer}>
+			{display ? (
+				<Modal display={display} close={() => setDisplay(!display)}>
 					<NewComp />
-				</div>
+				</Modal>
 			) : (
-				<></>
+				<>
+					{user.isLoggedIn ? (
+						<IoAddCircleOutline
+							className={style.addCompetition}
+							onClick={() => setDisplay(!display)}
+						/>
+					) : (
+						<></>
+					)}
+				</>
 			)}
 		</div>
 	);
 }
-/*
-onClick={(e) => {
-	setNewCompDisplay(!newCompDisplay);
-}}
-*/
-
-/*
-const refundDetailsRef = useRef<HTMLDivElement>(null) 
-const refundStatus = salesOrder.refundError ? 'REFUNDED_STATUS_ERROR' : salesOrder.refundStatus  
-useEffect(() => {    
-	const dismissComments = (event: MouseEvent) => {      
-		if (isOpened && refundDetailsRef.current && !refundDetailsRef.current.contains(event.target as unknown as Node))        
-			setIsOpened(false)
-	    }
-		document.addEventListener('mousedown', dismissComments)
-		return () => {      document.removeEventListener('mousedown', dismissComments)    }  
-}, [refundDetailsRef, isOpened])
-
-*/

@@ -19,7 +19,7 @@
 	box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
 }
 
-.button {
+.navigateTo {
 	background-color: lighten($background-color, 40%);
 	position: absolute;
 	bottom: 0;
@@ -27,7 +27,9 @@
 	left: 0;
 	height: 20%;
 	border: none;
+	text-decoration: none;
+	color: $font-color;
 }
-.button:hover {
+.navigateTo:hover {
 	background-color: lighten($background-color, 30%);
 }

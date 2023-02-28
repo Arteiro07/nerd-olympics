@@ -33,7 +33,20 @@ export default function UserLogo() {
 					<BiUserCircle />
 				)}
 			</div>
-			<div>{dropdown ? <Dropdown isLoggedIn={logout} /> : <></>}</div>
+			<div>
+				{dropdown ? (
+					<>
+						<Dropdown
+							isLoggedIn={logout}
+							close={() => {
+								setDropdown(!dropdown);
+							}}
+						/>
+					</>
+				) : (
+					<></>
+				)}
+			</div>
 		</div>
 	);
 }

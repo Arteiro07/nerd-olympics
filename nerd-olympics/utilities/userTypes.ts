@@ -3,7 +3,7 @@ export type User = {
 	email: string;
 	password: string;
 	isLoggedIn: boolean;
-	id: number;
+	userId: number;
 	token: string;
 	avatarId: number;
 };
@@ -13,7 +13,7 @@ export const initialState: User = {
 	password: "",
 	email: "",
 	isLoggedIn: false,
-	id: 0,
+	userId: 0,
 	token: "",
 	avatarId: 0,
 };

@@ -2,6 +2,7 @@
 
 import { useAuth } from "@/context/authContext";
 import { authSignUp } from "@/services/auth";
+import { useRouter } from "next/navigation";
 import { ChangeEvent, FormEvent, useContext, useEffect, useState } from "react";
 import {
 	User,
@@ -15,6 +16,7 @@ export default function SignUp() {
 	const [localUser, setLocalUser] = useState<User>(initialState);
 	const [disabled, setDisabled] = useState(false);
 	const [confirmPassword, setConfirmPassword] = useState("");
+	const router = useRouter();
 
 	useEffect(() => {
 		setDisabled(!localUser.email || !localUser.password || !localUser.name);
@@ -30,6 +32,7 @@ export default function SignUp() {
 			return;
 		}
 		signUp(localUser);
+		router.push("/");
 	};
 
 	const signUp = async (apiUser: User) => {
@@ -75,7 +78,7 @@ export default function SignUp() {
 				/>
 				<input
 					type="password"
-					placeholder="Password"
+					placeholder="Confirm Password"
 					name="confirmPassword"
 					value={confirmPassword}
 					onChange={(e) => setConfirmPassword(e.target.value)}

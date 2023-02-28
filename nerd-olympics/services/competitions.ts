@@ -1,7 +1,9 @@
-import { CompetitionDto } from "@/utilities/types";
+import { CompetitionDto, CompetitionDtoInitialState } from "@/utilities/types";
 import { baseURL, myHeaders } from ".";
 
 export async function getCompetitions(): Promise<CompetitionDto[]> {
+	//myHeaders.append("Authorization", `Bearer ${token}`);
+
 	try {
 		const res = await fetch(baseURL + "/competitions/all", {
 			method: "GET",
@@ -21,12 +23,44 @@ export async function getCompetitions(): Promise<CompetitionDto[]> {
 		//replace any
 		switch (err.cause.res?.status) {
 			case 404:
-				throw new Error();
+				throw new Error("404 page not found", err);
 			case 401:
-				throw new Error();
+				throw new Error("401 Unauthorized ", err);
 			default:
 				throw new Error();
 		}
 	}
 	return [];
+}
+
+export async function getCompetition(id: number): Promise<CompetitionDto> {
+	myHeaders.append("competitionId", `${id}`);
+
+	try {
+		const res = await fetch(baseURL + "/competitions/", {
+			method: "GET",
+			headers: myHeaders,
+		});
+		if (res?.ok) {
+			return await res.json();
+		}
+		if (!res.ok) {
+			throw new Error("Bad response from server", {
+				cause: {
+					res,
+				},
+			});
+		}
+	} catch (err: any) {
+		//replace any
+		switch (err.cause.res?.status) {
+			case 404:
+				throw new Error("404 page not found", err);
+			case 401:
+				throw new Error("401 Unauthorized ", err);
+			default:
+				throw new Error();
+		}
+	}
+	return CompetitionDtoInitialState;
 }

@@ -11,6 +11,7 @@ import { useRouter } from "next/navigation";
 
 type DropdownProps = {
 	isLoggedIn: boolean;
+	close: () => void;
 };
 
 export default function Dropdow(props: DropdownProps) {
@@ -28,10 +29,10 @@ export default function Dropdow(props: DropdownProps) {
 	const handleSubmit = async (e: FormEvent) => {
 		e.preventDefault();
 		const res = (await authSignIn(localUser)) as UserLoginResponse;
-
+		console.log(res.user);
 		setUser({
 			...user,
-			id: res.user.id,
+			userId: res.user.userId,
 			name: res.user.name,
 			email: res.user.email,
 			isLoggedIn: true,
@@ -42,41 +43,50 @@ export default function Dropdow(props: DropdownProps) {
 	if (props.isLoggedIn) {
 		return (
 			<div className={style.container}>
-				<button className={style.logout} onClick={() => setUser(initialState)}>
-					Logout
-				</button>
+				<div className={style.modalOverlay} onClick={props.close} />
+				<div className={style.modalContainer}>
+					<button
+						className={style.logout}
+						onClick={() => setUser(initialState)}
+					>
+						Logout
+					</button>
+				</div>
 			</div>
 		);
 	} else {
 		return (
 			<div className={style.container}>
-				<form onSubmit={handleSubmit}>
-					<input
-						type="email"
-						placeholder="Email"
-						name="email"
-						value={localUser.email}
-						onChange={handleChange}
-						required
-					/>
-					<input
-						type="password"
-						placeholder="Password"
-						name="password"
-						value={localUser.password}
-						onChange={handleChange}
-						required
-					/>
-					<input
-						className={disabled ? style.disabled : style.submit}
-						disabled={disabled}
-						type="submit"
-						value="Login"
-					/>
-				</form>
-				<Link className={style.signup} href="/signup">
-					Sign Up
-				</Link>
+				<div className={style.modalOverlay} onClick={props.close} />
+				<div className={style.modalContainer}>
+					<form onSubmit={handleSubmit}>
+						<input
+							type="email"
+							placeholder="Email"
+							name="email"
+							value={localUser.email}
+							onChange={handleChange}
+							required
+						/>
+						<input
+							type="password"
+							placeholder="Password"
+							name="password"
+							value={localUser.password}
+							onChange={handleChange}
+							required
+						/>
+						<input
+							className={disabled ? style.disabled : style.submit}
+							disabled={disabled}
+							type="submit"
+							value="Login"
+						/>
+					</form>
+					<Link className={style.signup} href="/signup">
+						Sign Up
+					</Link>
+				</div>
 			</div>
 		);
 	}

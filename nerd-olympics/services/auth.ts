@@ -75,7 +75,7 @@ export async function authSignIn(
 			case 404:
 				throw new Error();
 			case 401:
-				throw new Error();
+				alert("Wrong username or password");
 			default:
 				throw new Error();
 		}
