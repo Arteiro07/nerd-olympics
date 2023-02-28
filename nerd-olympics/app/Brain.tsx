@@ -20,8 +20,10 @@ export default function Brain() {
 	return (
 		<>
 			<OrbitControls target={[0, 0, 0]} maxPolarAngle={1.45} />
-			<ambientLight intensity={0.1} />
+			<ambientLight color="orange" intensity={0.5} />
 			<directionalLight color="orange" position={[0, 0, 5]} />
+			<directionalLight color="orange" position={[0, 5, 0]} />
+			<directionalLight color="orange" position={[5, 0, 0]} />
 			<primitive object={gltf.scene} ref={meshRef} />
 		</>
 	);
