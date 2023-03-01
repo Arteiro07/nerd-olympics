@@ -1,51 +1,63 @@
-.navigationBar{
-  display: flex;
-  background: #181818;
-  height: 60px;
-  width: 100%;
-  position: fixed;
-  left: 0;
-  top: 0;
-  min-width: 500px;
-  overflow: hidden;
-  z-index: 3;
-  nav{
-    text-align: center;
-    margin: auto;
-  }
-  
-  li{
-    display: inline;
-  }
-  a{
-    color: #999999;
-    text-decoration: none;
-    font-size: 22px;
-    position: relative;
-    margin: 30px;
-    opacity: 1;
-    transition: 0.3s;
-  }
-  a:hover{
-    color: #ffd700;
-    opacity: 1;
-  }
-  
-  i{ 
-    transition: all 0.5s ease-out;
-  }
+@import "@/utilities/base.scss";
+
+.navigationBar {
+	display: flex;
+	background: #181818;
+	height: $navbar-height;
+	width: 100%;
+	position: fixed;
+	left: 0;
+	top: 0;
+	min-width: 500px;
+	overflow: hidden;
+	z-index: 3;
+	nav {
+		text-align: center;
+		margin: auto;
+	}
+
+	li {
+		display: inline;
+	}
+	a {
+		color: $title-font-color;
+		text-decoration: none;
+		font-size: 22px;
+		position: relative;
+		margin: 30px;
+		opacity: 1;
+		transition: 0.3s;
+	}
+	a:hover {
+		color: $title-accent-color;
+		opacity: 1;
+	}
+
+	i {
+		transition: all 0.5s ease-out;
+	}
 }
 
 .logo {
-  position: absolute;
-  top:0;
-  left: 0;
-  margin: 5px;
+	position: absolute;
+	top: 0;
+	left: 0;
+	margin: 5px;
 }
 
-.content{
-  position: absolute;
-  top: 60px;
-  width: 100%;
-  height: calc(100vh - 60px);
+.user {
+	position: absolute;
+	top: 0;
+	right: 0;
+	font-size: 50px;
+	color: $title-font-color;
+	cursor: pointer;
+	margin: auto;
+}
+
+.content {
+	position: absolute;
+	top: 60px;
+	width: 100%;
+	height: calc(100vh - 60px);
 }
