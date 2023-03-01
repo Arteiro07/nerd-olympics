@@ -24,7 +24,7 @@ export default function AuthProvider({
 	children: React.ReactNode;
 }) {
 	const [user, setUser] = useState(() => {
-		const sessionUser = JSON.parse(sessionStorage.getItem("user")!);
+		const sessionUser = JSON.parse(sessionStorage?.getItem("user")!);
 		if (sessionUser) {
 			return sessionUser;
 		} else return initialState;

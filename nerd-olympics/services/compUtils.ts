@@ -8,7 +8,6 @@ export async function newComp(
 	myHeaders.append("Authorization", `Bearer ${token}`);
 
 	try {
-		console.log(JSON.stringify(apiCompetition));
 		const res = await fetch(baseURL + "/competitions", {
 			method: "POST",
 			headers: myHeaders,
@@ -48,7 +47,6 @@ export async function deleteComp(
 	myHeaders.append("Authorization", `Bearer ${token}`);
 
 	try {
-		console.log(JSON.stringify(apiCompetition));
 		const res = await fetch(baseURL + "/competitions", {
 			method: "DELETE",
 			headers: myHeaders,
@@ -92,7 +90,6 @@ export async function checkComp(name: string): Promise<boolean> {
 			headers: myHeaders,
 			body: `competitionName: ${name}`,
 		});
-		console.log(await res.json());
 
 		if (res.ok) {
 			// refresh?

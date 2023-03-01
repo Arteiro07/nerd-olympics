@@ -1,3 +1,4 @@
+import Spinner from "@/components/Spinner";
 import Image from "next/image";
 import about_img from "../../public/hotpot.png";
 import style from "./about.module.scss";
