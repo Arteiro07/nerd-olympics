@@ -8,8 +8,8 @@ export default function Player(user: User) {
 	return (
 		<>
 			<div className={style.card}>
-				<Link href={`/players/${user.id}`}>
-					{user.id}, {user.name} {user.email},
+				<Link href={`/players/${user.userId}`}>
+					{user.userId}, {user.name} {user.email},
 				</Link>
 			</div>
 			<div className={style.divider} />
