@@ -12,7 +12,7 @@ export default function Competition(competition: CompetitionDto) {
 	const [owner, setOwner] = useState(false);
 
 	useEffect(() => {
-		if (competition.userId === user.id) setOwner(true);
+		if (competition.userId === user.userId) setOwner(true);
 	}, [user, owner, competition]);
 
 	return (
