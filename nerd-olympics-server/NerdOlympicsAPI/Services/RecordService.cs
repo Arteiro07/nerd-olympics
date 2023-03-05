@@ -1,4 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using NerdOlympics.API.Factory;
+using NerdOlympics.API.FactoryPattern;
 using NerdOlympics.API.Interfaces;
 using NerdOlympics.Data.Interfaces;
 using NerdOlympics.Data.Models;
@@ -10,6 +12,7 @@ namespace NerdOlympics.API.Services
         IRecordRepository _recordRepository;
         IUserRepository _userRepository;
         ICompetitionRepository _competitionRepository;
+
         public RecordService(IRecordRepository recordRepository, IUserRepository userRepository, ICompetitionRepository competitionRepository) 
         {
             _recordRepository = recordRepository;

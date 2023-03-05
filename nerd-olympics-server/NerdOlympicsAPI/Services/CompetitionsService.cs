@@ -2,6 +2,8 @@
 using Microsoft.AspNetCore.Mvc;
 using NerdOlympics.Data.Interfaces;
 using NerdOlympicsAPI.Interfaces;
+using NerdOlympics.API.Factory;
+using NerdOlympics.API.FactoryPattern;
 
 namespace NerdOlympicsAPI.Services
 {
@@ -22,6 +24,15 @@ namespace NerdOlympicsAPI.Services
         public async Task<IActionResult> GetCompetition(int competitionId)
         {
             return new OkObjectResult(await _competitionRepository.GetCompetition(competitionId));
+        }
+
+        public async Task<IActionResult> GetCompetitionLeaderBoard(int competitionId)
+        {
+            Competition c = await _competitionRepository.GetCompetition(competitionId)?;
+
+            ICompetition competition = CompetitionFactory.GetCompetition(c.MeasurementType);
+
+            return new OkObjectResult(await competition.Leaderboard());
         }
 
         public async Task<IActionResult> CreateCompetition(Competition competition)

@@ -12,7 +12,7 @@ namespace NerdOlympics.Data.Models
         public string? Description {get;set;}
         public DateTime? CreatedDate { get; set; }
         public ClassificationType ClassificationType { get; set; }
-        public MeasurementType MeasurementType { get; set; }
+        public CompetitionType MeasurementType { get; set; }
         
         [Display(Name = "User")]
         public int UserId { get; set; }

@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace NerdOlympics.Data.Enum.Competitions
 {
-    public enum MeasurementType
+    public enum CompetitionType
     {
         None = 0,
         Time = 1,

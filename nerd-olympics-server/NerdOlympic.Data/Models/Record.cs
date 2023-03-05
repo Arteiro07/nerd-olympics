@@ -9,6 +9,7 @@ namespace NerdOlympics.Data.Models
         public int RecordId { get; set; }
         public string? Description { get; set; }        
         public string Value { get; set; } = string.Empty;
+        public DateTime? Date { get; set; }
 
         [ForeignKey("Competition")]
         public int CompetitionId { get; set; }
