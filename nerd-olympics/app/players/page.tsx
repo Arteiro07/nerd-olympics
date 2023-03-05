@@ -1,20 +1,24 @@
-import axios from 'axios'
-import Player from './Player';
-import style  from "./players.module.scss";
-import { User } from '../types';
+"use client";
 
-export default async function page() {
+import Player from "./Player";
+import style from "./players.module.scss";
+import { getUsers } from "@/services/users";
+import { useAuth } from "@/context/authContext";
+import { User } from "@/utilities/userTypes";
 
-    const res = await axios.get(`https://dummyjson.com/users`);
-    
-      return (
-        <div className={style.container}>
-          {res.data.users.map((user:User) => (
-            <Player
-              key={user.id}
-              {...user}
-            />
-          ))}
-        </div>
-      )
+export default async function Page() {
+	const { user, setUser } = useAuth();
+	const res = await getUsers(user.token);
+
+	return (
+		<div className={style.container}>
+			{res.map((user: User) => (
+				<Player key={user.id} {...user} />
+			))}
+		</div>
+	);
 }
+/*
+
+
+*/

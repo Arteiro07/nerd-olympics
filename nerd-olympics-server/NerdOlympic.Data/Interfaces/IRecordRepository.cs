@@ -11,8 +11,8 @@ namespace NerdOlympics.Data.Interfaces
     {
         Task<List<Record>> GetUserRecords(int userId);
         Task<List<Record>> GetCompetitionRecords(int competitionId);
-        Task<Record?> CreateUserRecord(Record record);
-        Task<Record?> UpdateUserRecord(Record record);
+        Task<Record> CreateUserRecord(Record record);
+        Task<Record> UpdateUserRecord(Record record);
         Task<bool> DeleteUserRecord(int recordId);
         Task<bool> Exists(int recordId);
     }

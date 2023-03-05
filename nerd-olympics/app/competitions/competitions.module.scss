@@ -1,0 +1,65 @@
+@import "@/utilities/base.scss";
+
+.container {
+}
+
+.searchBarContainer {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	width: 400px;
+	position: relative;
+	margin: auto;
+	padding: 3px;
+
+	input {
+		outline: transparent;
+		width: 100%;
+		line-height: 30px;
+		font-size: 25px;
+		background-color: $input-color;
+		border-radius: 10px;
+		padding: 3px;
+	}
+}
+
+.glass {
+	margin-right: 8px;
+	font-size: 25px;
+	position: absolute;
+	right: 0;
+	color: $background-color;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	cursor: pointer;
+}
+
+.competitionsContainer {
+	display: grid;
+	grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+	grid-gap: 20px;
+}
+
+.addCompetition {
+	position: fixed;
+	right: 0;
+	bottom: 0;
+	margin: 0px 20px 10px 00px;
+	font-size: 70px;
+	color: $title-font-color;
+	cursor: pointer;
+	border-radius: 100%;
+	padding: 0;
+	opacity: 0.7;
+	transition: all 0.3s ease;
+}
+
+.addCompetition:hover {
+	opacity: 1;
+	color: $title-accent-color;
+	cursor: pointer;
+	transform: translate(-3px, -7px);
+	font-size: 80px;
+	box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}

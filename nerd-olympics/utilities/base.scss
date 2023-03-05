@@ -1,28 +1,33 @@
 $background-color: #232323;
-$title-color: #999999;
-$letter-color: #f2f2f2;
+$font-color: #f2f2f2;
 $border-color: #404040;
+$input-color: #dddddd;
+
+$title-font-color: #999999;
+$title-accent-color: #ffd700;
 
 $scrollbar-size: 10px;
+$navbar-height: 60px;
 
 @mixin scrollbars($size, $foreground-color, $background-color) {
-    // For Google Chrome
-    &::-webkit-scrollbar {
-      width:  $size;
-      height: $size;
-    }
-  
-    &::-webkit-scrollbar-thumb {
-      background: $foreground-color;
-    }
-  
-    &::-webkit-scrollbar-track {
-      background: $background-color;
-    }
-  
-    // For Internet Explorer
-    & {
-      scrollbar-face-color: $foreground-color;
-      scrollbar-track-color: $background-color;
-    }
+	// For Google Chrome
+	&::-webkit-scrollbar {
+		width: $size;
+		height: $size;
+	}
+
+	&::-webkit-scrollbar-thumb {
+		background: $foreground-color;
+	}
+
+	&::-webkit-scrollbar-track {
+		background: $background-color;
+	}
+
+	// For Internet Explorer
+	& {
+		scrollbar-face-color: $foreground-color;
+		scrollbar-track-color: $background-color;
+	}
 }
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@200;400;600&display=swap");

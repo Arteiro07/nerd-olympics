@@ -2,7 +2,9 @@
 using NerdOlympics.Data.Cryptography;
 using NerdOlympics.Data.Interfaces;
 using NerdOlympics.Data.Models;
+using NerdOlympics.Data.Models.ErrorHandling;
 using NerdOlympicsAPI.Interfaces;
+using System.Net;
 
 namespace NerdOlympicsAPI.Services
 {
@@ -20,12 +22,9 @@ namespace NerdOlympicsAPI.Services
         public async Task<IActionResult> Authenticate(LoginCredentials creds)
         {
             if (creds == null || string.IsNullOrEmpty(creds.Email) || string.IsNullOrEmpty(creds.Password))
-                return new UnauthorizedObjectResult(null);
+                throw new CustomException((int)HttpStatusCode.Unauthorized, ErrorMessage.USER_INVALID_CREDENTIALS);
 
-            User? user =  await _userRepository.Authenticate(creds.Email, creds.Password);
-
-            if (user == null)
-                return  new UnauthorizedObjectResult(null);
+            User user =  await _userRepository.Authenticate(creds.Email, creds.Password);
 
             // Create a JWT that contains the user's claims and a signing key
             string token = _jwtTokenService.GenerateToken(user.UserId!, user.IsAdmin);
@@ -37,7 +36,7 @@ namespace NerdOlympicsAPI.Services
         public async Task<IActionResult> CreateUser(SignUpCredentials user)
         {
             if (await _userRepository.CheckEmailExists(user.Email!))
-                return new ConflictObjectResult("Email address already in use.");
+                throw new CustomException((int)HttpStatusCode.Conflict, ErrorMessage.USER_EMAIL_EXISTS);
 
             var newUser = new User() {
                 Name = user.Name,
@@ -49,15 +48,10 @@ namespace NerdOlympicsAPI.Services
 
             var createdUser = await _userRepository.CreateUser(newUser);
 
-            if(createdUser != null)
-            {
-                // Create a JWT that contains the user's claims and a signing key
-                string token = _jwtTokenService.GenerateToken(createdUser.UserId, createdUser.IsAdmin);
+            // Create a JWT that contains the user's claims and a signing key
+            string token = _jwtTokenService.GenerateToken(createdUser.UserId, createdUser.IsAdmin);
 
-                return new OkObjectResult(new { token, createdUser });
-            }
-            throw new Exception("Error creating user");
-
+            return new OkObjectResult(new { token, createdUser });       
         }
 
         public async Task<IActionResult> GetUsers()
@@ -67,13 +61,12 @@ namespace NerdOlympicsAPI.Services
 
         public async Task<IActionResult> GetUser(string email)
         {
-            var user = await _userRepository.GetUsers(email);
+            return new OkObjectResult(await _userRepository.GetUser(email));
+        }
 
-            if(user == null)
-            {
-                return new NotFoundResult();
-            }
-            return new OkObjectResult(user);
+        public async Task<IActionResult> EmailInUse(string email)
+        {
+            return new OkObjectResult(await _userRepository.CheckEmailExists(email));
         }
     }
 }

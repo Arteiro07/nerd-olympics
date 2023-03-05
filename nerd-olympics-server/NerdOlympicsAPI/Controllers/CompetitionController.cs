@@ -1,7 +1,9 @@
-﻿using Microsoft.AspNetCore.Authorization;
+﻿using Azure;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using NerdOlympics.Data.Enum.Security;
 using NerdOlympics.Data.Models;
+using NerdOlympics.Data.Models.ErrorHandling;
 using NerdOlympicsAPI.Interfaces;
 
 namespace NerdOlympics.Controllers;
@@ -19,30 +21,54 @@ public class CompetitionController : Controller
 
     [HttpGet]
     [Route("all")]
-    [Authorize(Policies.Authenticated)]
+    [ProducesResponseType(typeof(IActionResult), 200)]
+    [ProducesResponseType(typeof(ErrorResponse), 400)]
+    [ProducesResponseType(typeof(ErrorResponse), 500)]
+    //[Authorize(Policies.Authenticated)]
     public async Task<IActionResult> GetCompetitions()
     {
         return await _competitionsService.GetCompetitions();
     }
     
     [HttpGet]
+<<<<<<< HEAD
     [Route("")]
     [Authorize(Policies.Authenticated)]
+=======
+    [ProducesResponseType(typeof(IActionResult), 200)]
+    [ProducesResponseType(typeof(ErrorResponse), 400)]
+    [ProducesResponseType(typeof(ErrorResponse), 500)]
+    //[Authorize(Policies.Authenticated)]
+>>>>>>> main
     public async Task<IActionResult> GetCompetition(int competitionId)
     {
         return await _competitionsService.GetCompetition(competitionId);
     }
 
     [HttpGet]
+<<<<<<< HEAD
     [Route("leaderboard")]
     [Authorize(Policies.Authenticated)]
     public async Task<IActionResult> GetCompetitionLeaderboard(int competitionId)
     {
         return await _competitionsService.GetCompetitionLeaderBoard(competitionId);
+=======
+    [Route("validation")]
+    [ProducesResponseType(typeof(IActionResult), 200)]
+    [ProducesResponseType(typeof(ErrorResponse), 400)]
+    [ProducesResponseType(typeof(ErrorResponse), 500)]
+    //[Authorize(Policies.Authenticated)]
+    public async Task<IActionResult> CompetitionNameExists(string competitionName)
+    {
+        return await _competitionsService.CompetitionNameExists(competitionName);
+>>>>>>> main
     }
 
     [HttpPost]
     [Route("")]
+    [ProducesResponseType(typeof(IActionResult), 200)]
+    [ProducesResponseType(typeof(ErrorResponse), 400)]
+    [ProducesResponseType(typeof(ErrorResponse), 500)]
     [Authorize(Policies.Authenticated)]
     public async Task<IActionResult> CreateCompetition([FromBody] Competition competition)
     {
@@ -51,6 +77,9 @@ public class CompetitionController : Controller
 
     [HttpPut]
     [Route("")]
+    [ProducesResponseType(typeof(IActionResult), 200)]
+    [ProducesResponseType(typeof(ErrorResponse), 400)]
+    [ProducesResponseType(typeof(ErrorResponse), 500)]
     [Authorize(Policies.Authenticated)]
     public async Task<IActionResult> UpdateCompetition([FromBody] Competition competition)
     {

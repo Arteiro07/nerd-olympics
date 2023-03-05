@@ -2,8 +2,13 @@
 using Microsoft.AspNetCore.Mvc;
 using NerdOlympics.Data.Interfaces;
 using NerdOlympicsAPI.Interfaces;
+<<<<<<< HEAD
 using NerdOlympics.API.Factory;
 using NerdOlympics.API.FactoryPattern;
+=======
+using NerdOlympics.Data.Models.ErrorHandling;
+using System.Net;
+>>>>>>> main
 
 namespace NerdOlympicsAPI.Services
 {
@@ -42,19 +47,15 @@ namespace NerdOlympicsAPI.Services
 
         public async Task<IActionResult> UpdateCompetition(Competition competition, string userId)
         {
-            if(competition == null || !await _competitionRepository.UserOwnsCompetition(userId, competition.CompetitionId))
-            {
-                return new UnauthorizedObjectResult("User does not own competition");
-            }
+            if(competition == null || !await _competitionRepository.UserOwnsCompetition(userId, competition.CompetitionId))            
+                throw new CustomException((int)HttpStatusCode.NotFound, ErrorMessage.USER_DOES_NOT_OWN_COMPETITION);
+            
+            return new OkObjectResult(await _competitionRepository.UpdateCompetition(competition));
+        }
 
-            Competition? updatedCompetition = await _competitionRepository.UpdateCompetition(competition);
-
-            if (updatedCompetition == null)
-            {
-                throw new Exception("Error updating competition");
-            }
-
-            return new OkObjectResult(updatedCompetition);
+        public async Task<IActionResult> CompetitionNameExists(string competitionName)
+        {
+            return new OkObjectResult(await _competitionRepository.CompetitionNameExists(competitionName));
         }
     }
 }

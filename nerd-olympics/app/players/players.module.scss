@@ -1,4 +1,5 @@
-@import "../../utilities/base.scss";
+@import "@/utilities/base.scss";
+
 
 .container{
     margin: 20px;
@@ -6,6 +7,6 @@
     border-radius: 5px;
     height: 90%;
     overflow: auto;
-    @include scrollbars($scrollbar-size, $title-color, $background-color);
+    @include scrollbars($scrollbar-size, $title-font-color, $background-color);
 }
 

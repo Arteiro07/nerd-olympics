@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Mvc;
 using NerdOlympics.Data.Enum.Security;
 using NerdOlympics.Data.Models;
+using NerdOlympics.Data.Models.ErrorHandling;
 using NerdOlympicsAPI.Interfaces;
 
 namespace NerdOlympics.Controllers;
@@ -20,7 +21,9 @@ public class UserController : Controller
     [HttpGet]
     [Route("all")]
     [Authorize(Policies.Authenticated)]
-    //[Authorize(Policies.Admin)]
+    [ProducesResponseType(typeof(IActionResult), 200)]
+    [ProducesResponseType(typeof(ErrorResponse), 400)]
+    [ProducesResponseType(typeof(ErrorResponse), 500)]
     public async Task<IActionResult> GetUsers()
     {
         return await _userService.GetUsers();
@@ -29,13 +32,29 @@ public class UserController : Controller
     [HttpGet]
     [Route("")]
     [Authorize(Policies.Authenticated)]
+    [ProducesResponseType(typeof(IActionResult), 200)]
+    [ProducesResponseType(typeof(ErrorResponse), 400)]
+    [ProducesResponseType(typeof(ErrorResponse), 500)]
     public async Task<IActionResult> GetUserbyEmail(string email)
     {
-         return await _userService.GetUser(email);
+        return await _userService.GetUser(email);
+    }
+
+    [HttpGet]
+    [Route("validation")]
+    [ProducesResponseType(typeof(IActionResult), 200)]
+    [ProducesResponseType(typeof(ErrorResponse), 400)]
+    [ProducesResponseType(typeof(ErrorResponse), 500)]
+    public async Task<IActionResult> EmailInUse(string email)
+    {
+        return await _userService.EmailInUse(email);
     }
 
     [HttpPost]
     [Route("registration")]
+    [ProducesResponseType(typeof(IActionResult), 200)]
+    [ProducesResponseType(typeof(ErrorResponse), 400)]
+    [ProducesResponseType(typeof(ErrorResponse), 500)]
     public async Task<IActionResult> CreateUser([FromBody] SignUpCredentials user)
     {
         return await _userService.CreateUser(user);         
@@ -43,6 +62,9 @@ public class UserController : Controller
 
     [HttpPost]
     [Route("authentication")]
+    [ProducesResponseType(typeof(IActionResult), 200)]
+    [ProducesResponseType(typeof(ErrorResponse), 400)]
+    [ProducesResponseType(typeof(ErrorResponse), 500)]
     public async Task<IActionResult> Authenticate([FromBody] LoginCredentials user)
     {
         return await _userService.Authenticate(user);

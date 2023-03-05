@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Mvc;
 using NerdOlympics.API.Interfaces;
 using NerdOlympics.Data.Enum.Security;
 using NerdOlympics.Data.Models;
+using NerdOlympics.Data.Models.ErrorHandling;
 
 namespace NerdOlympics.API.Controllers
 {
@@ -18,7 +19,10 @@ namespace NerdOlympics.API.Controllers
 
         [HttpGet]
         [Route("user")]
-        [Authorize(Policies.Authenticated)]
+        [ProducesResponseType(typeof(IActionResult), 200)]
+        [ProducesResponseType(typeof(ErrorResponse), 400)]
+        [ProducesResponseType(typeof(ErrorResponse), 500)]
+        //[Authorize(Policies.Authenticated)]
         public async Task<IActionResult> GetUserRecords(int userId) 
         { 
             return await _recordService.GetUserRecords(userId);
@@ -26,7 +30,10 @@ namespace NerdOlympics.API.Controllers
 
         [HttpGet]
         [Route("competition")]
-        [Authorize(Policies.Authenticated)]
+        [ProducesResponseType(typeof(IActionResult), 200)]
+        [ProducesResponseType(typeof(ErrorResponse), 400)]
+        [ProducesResponseType(typeof(ErrorResponse), 500)]
+        //[Authorize(Policies.Authenticated)]
         public async Task<IActionResult> GetCompetitionRecords(int competitionId)
         {
             return await _recordService.GetCompetitionRecords(competitionId);
@@ -34,6 +41,9 @@ namespace NerdOlympics.API.Controllers
 
         [HttpPost]
         [Route("")]
+        [ProducesResponseType(typeof(IActionResult), 200)]
+        [ProducesResponseType(typeof(ErrorResponse), 400)]
+        [ProducesResponseType(typeof(ErrorResponse), 500)]
         [Authorize(Policies.Authenticated)]
         public async Task<IActionResult> CreateRecord([FromBody] Record record)
         {
@@ -42,6 +52,9 @@ namespace NerdOlympics.API.Controllers
 
         [HttpPut]
         [Route("")]
+        [ProducesResponseType(typeof(IActionResult), 200)]
+        [ProducesResponseType(typeof(ErrorResponse), 400)]
+        [ProducesResponseType(typeof(ErrorResponse), 500)]
         [Authorize(Policies.Authenticated)]
         public async Task<IActionResult> UpdateRecord([FromBody] Record record)
         {
@@ -50,6 +63,9 @@ namespace NerdOlympics.API.Controllers
 
         [HttpDelete]
         [Route("")]
+        [ProducesResponseType(typeof(IActionResult), 200)]
+        [ProducesResponseType(typeof(ErrorResponse), 400)]
+        [ProducesResponseType(typeof(ErrorResponse), 500)]
         [Authorize(Policies.Authenticated)]
         public async Task<IActionResult> DeleteRecord(int recordId)
         {

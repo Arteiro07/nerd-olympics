@@ -4,6 +4,8 @@ using NerdOlympics.API.FactoryPattern;
 using NerdOlympics.API.Interfaces;
 using NerdOlympics.Data.Interfaces;
 using NerdOlympics.Data.Models;
+using NerdOlympics.Data.Models.ErrorHandling;
+using System.Net;
 
 namespace NerdOlympics.API.Services
 {
@@ -23,28 +25,24 @@ namespace NerdOlympics.API.Services
         public async Task<IActionResult> CreateUserRecord(Record record)
         {
             if (record == null)
-                throw new Exception("Invalid record");
+                throw new CustomException((int)HttpStatusCode.NotFound, ErrorMessage.RECORD_NOT_FOUND);
 
             if (!await _userRepository.UserExists(record.UserId))
-                throw new Exception("User does not exist");
+                throw new CustomException((int)HttpStatusCode.NotFound, ErrorMessage.USER_NOT_FOUND);
 
             if (!await _competitionRepository.CompetitionExists(record.CompetitionId))
-                throw new Exception("Competition does not exist");
+                throw new CustomException((int)HttpStatusCode.NotFound, ErrorMessage.COMPETITION_NOT_FOUND);
 
-            Record? createdRecord = await _recordRepository.CreateUserRecord(record);
-
-            if (createdRecord == null) throw new Exception("Error creating record");
+            Record createdRecord = await _recordRepository.CreateUserRecord(record);
 
             return new OkObjectResult(createdRecord);
         }
         public async Task<IActionResult> UpdateUserRecord(Record record)
         {
             if (record == null || !await _recordRepository.Exists(record.RecordId))
-                throw new Exception("Invalid record");
+                throw new CustomException((int)HttpStatusCode.NotFound, ErrorMessage.RECORD_NOT_FOUND);
 
-            Record? updatedRecord = await _recordRepository.UpdateUserRecord(record);
-
-            if (updatedRecord == null) throw new Exception("Error updating record");
+            Record updatedRecord = await _recordRepository.UpdateUserRecord(record);
 
             return new OkObjectResult(updatedRecord);
         }
@@ -52,19 +50,17 @@ namespace NerdOlympics.API.Services
         public async Task<IActionResult> DeleteUserRecord(int recordId)
         {
             if (!await _recordRepository.Exists(recordId))
-                throw new Exception("Invalid record");
+                throw new CustomException((int)HttpStatusCode.NotFound, ErrorMessage.RECORD_NOT_FOUND);
 
-            var success = await _recordRepository.DeleteUserRecord(recordId);
-
-            if (!success) throw new Exception("Error deleting record");
-            
+            await _recordRepository.DeleteUserRecord(recordId);
+                        
             return new OkResult();
         }
 
         public async Task<IActionResult> GetCompetitionRecords(int competitionId)
         {
             if (!await _competitionRepository.CompetitionExists(competitionId))
-                throw new Exception("Competition does not exist");
+                throw new CustomException((int)HttpStatusCode.NotFound, ErrorMessage.COMPETITION_NOT_FOUND);
 
             return new OkObjectResult(await _recordRepository.GetCompetitionRecords(competitionId));
         }
@@ -72,7 +68,7 @@ namespace NerdOlympics.API.Services
         public async Task<IActionResult> GetUserRecords(int userId)
         {
             if (!await _userRepository.UserExists(userId))
-                throw new Exception("User does not exist");
+                throw new CustomException((int)HttpStatusCode.NotFound, ErrorMessage.USER_NOT_FOUND);
 
             return new OkObjectResult(await _recordRepository.GetUserRecords(userId));
 

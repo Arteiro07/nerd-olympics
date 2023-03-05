@@ -1,0 +1,99 @@
+{
+    "asset" : {
+        "generator" : "Khronos glTF Blender I/O v1.7.33",
+        "version" : "2.0"
+    },
+    "scene" : 0,
+    "scenes" : [
+        {
+            "name" : "Scene",
+            "nodes" : [
+                0
+            ]
+        }
+    ],
+    "nodes" : [
+        {
+            "mesh" : 0,
+            "name" : "Brain_Part_05",
+            "rotation" : [
+                0.7117129564285278,
+                0,
+                0,
+                0.7024704217910767
+            ],
+            "scale" : [
+                3.586127758026123,
+                3.5861282348632812,
+                3.5861282348632812
+            ]
+        }
+    ],
+    "meshes" : [
+        {
+            "name" : "Untitled.004",
+            "primitives" : [
+                {
+                    "attributes" : {
+                        "POSITION" : 0,
+                        "NORMAL" : 1
+                    },
+                    "indices" : 2
+                }
+            ]
+        }
+    ],
+    "accessors" : [
+        {
+            "bufferView" : 0,
+            "componentType" : 5126,
+            "count" : 2810520,
+            "max" : [
+                0.5334093570709229,
+                0.7122836112976074,
+                0.6051533222198486
+            ],
+            "min" : [
+                -0.5268511772155762,
+                -0.6059389114379883,
+                -0.5204340219497681
+            ],
+            "type" : "VEC3"
+        },
+        {
+            "bufferView" : 1,
+            "componentType" : 5126,
+            "count" : 2810520,
+            "type" : "VEC3"
+        },
+        {
+            "bufferView" : 2,
+            "componentType" : 5125,
+            "count" : 2810520,
+            "type" : "SCALAR"
+        }
+    ],
+    "bufferViews" : [
+        {
+            "buffer" : 0,
+            "byteLength" : 33726240,
+            "byteOffset" : 0
+        },
+        {
+            "buffer" : 0,
+            "byteLength" : 33726240,
+            "byteOffset" : 33726240
+        },
+        {
+            "buffer" : 0,
+            "byteLength" : 11242080,
+            "byteOffset" : 67452480
+        }
+    ],
+    "buffers" : [
+        {
+            "byteLength" : 78694560,
+            "uri" : "brain.bin"
+        }
+    ]
+}
