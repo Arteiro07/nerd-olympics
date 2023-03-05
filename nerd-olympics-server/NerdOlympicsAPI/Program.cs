@@ -14,6 +14,7 @@ using NerdOlympics.API.Interfaces;
 using NerdOlympics.API.Services;
 using NerdOlympics.Data;
 using NerdOlympics.Data.Enum.Security;
+using NerdOlympics.API.Services.ErrorHandling;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -86,6 +87,7 @@ if (!app.Environment.IsDevelopment())
     app.UseHsts();
 }
 
+app.UseMiddleware<ErrorHandlingMiddleware>();
 app.UseHttpsRedirection();
 app.UseStaticFiles();
 
