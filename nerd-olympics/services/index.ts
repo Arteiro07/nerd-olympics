@@ -1,4 +1,4 @@
-const baseURL = "https://apim-nerd-olympics-dev.azure-api.net";
+const baseURL = "https://nerd-olympics-api-dev.azurewebsites.net";
 
 const myHeaders = new Headers();
 myHeaders.append("Content-Type", "application/json");

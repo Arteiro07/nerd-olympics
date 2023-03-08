@@ -2,8 +2,6 @@ import { CompetitionDto, CompetitionDtoInitialState } from "@/utilities/types";
 import { baseURL, myHeaders } from ".";
 
 export async function getCompetitions(): Promise<CompetitionDto[]> {
-	//myHeaders.append("Authorization", `Bearer ${token}`);
-
 	try {
 		const res = await fetch(baseURL + "/competitions/all", {
 			method: "GET",
@@ -34,13 +32,17 @@ export async function getCompetitions(): Promise<CompetitionDto[]> {
 }
 
 export async function getCompetition(id: number): Promise<CompetitionDto> {
-	myHeaders.append("competitionId", `${id}`);
-
 	try {
-		const res = await fetch(baseURL + "/competitions/", {
-			method: "GET",
-			headers: myHeaders,
-		});
+		const res = await fetch(
+			baseURL +
+				"/competitions?" +
+				new URLSearchParams({ competitionId: `${id}` }),
+			{
+				method: "GET",
+				headers: myHeaders,
+			}
+		);
+		console.log(res);
 		if (res?.ok) {
 			return await res.json();
 		}

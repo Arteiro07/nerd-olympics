@@ -1,4 +1,5 @@
 "use client";
+
 import { useContext, useEffect, useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
@@ -19,17 +20,12 @@ export default function Competition(competition: CompetitionDto) {
 		<div className={style.competitionCard}>
 			<h2 className={style.title}>{competition.name}</h2>
 			<h3 className={style.description}>{competition.description}</h3>
-			{owner ? (
-				<div className={style.navigateTo}> Info </div>
-			) : (
-				<Link
-					href={`/competitions/${competition.userId}`}
-					className={style.navigateTo}
-				>
-					{" "}
-					Info
-				</Link>
-			)}
+			<Link
+				href={`/competitions/${competition.competitionId}`}
+				className={style.navigateTo}
+			>
+				Info
+			</Link>
 		</div>
 	);
 }

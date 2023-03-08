@@ -1,40 +1,45 @@
 @import "@/utilities/base.scss";
 
-.container{
-    display: flex;
-    margin: auto;
-    justify-content: center;
-    text-align: center;
-    flex-direction: column;
-    width: 500px;
-    margin-top: 30px;
+.container {
+	display: flex;
+	margin: auto;
+	justify-content: center;
+	text-align: center;
+	flex-direction: column;
+	width: 500px;
+	margin-top: 30px;
 
-    form{
-        display: flex;
-        justify-content: center;    
-        flex-direction: column;
+	form {
+		display: flex;
+		justify-content: center;
+		flex-direction: column;
 
-        input{
-            background-color: $input-color;
-            padding: 10px 20px;
-            margin: 10px;
-            border: 1px solid #ccc;
-            border-radius: 3px;
-            outline: transparent;
-            font-size: 14px;
-            line-height: 30px;
-            font-size: 20px;
-        }
-    }
+		input {
+			background-color: $input-color;
+			padding: 10px 20px;
+			margin: 10px;
+			border: 1px solid #ccc;
+			border-radius: 3px;
+			outline: transparent;
+			font-size: 14px;
+			line-height: 30px;
+			font-size: 20px;
+		}
+	}
 }
 
-.submit{
-    transition: all 0.5s ease;
-    cursor: pointer;
+.submit {
+	transition: all 0.5s ease;
+	cursor: pointer;
 }
 
-.submit:hover{
-    background-color: darken($input-color ,40%);
-    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-    transform: translateY(-2px);
+.submit:hover {
+	background-color: darken($input-color, 40%);
+	box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+	transform: translateY(-2px);
+}
+
+.inUse {
+	color: red;
+	font-size: 10px;
 }

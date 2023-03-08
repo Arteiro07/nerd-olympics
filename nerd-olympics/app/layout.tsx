@@ -48,9 +48,6 @@ export default function RootLayout({
 										<Link href="/about">About </Link>
 									</li>
 									<li>
-										<Link href="/players">Players</Link>
-									</li>
-									<li>
 										<Link href="/competitions">Competitions</Link>
 									</li>
 									<li className={style.user}>

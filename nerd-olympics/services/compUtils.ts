@@ -1,4 +1,5 @@
 import { CompetitionDto } from "@/utilities/types";
+import { CONFIG_FILES } from "next/dist/shared/lib/constants";
 import { baseURL, myHeaders } from ".";
 
 export async function newComp(
@@ -85,12 +86,16 @@ export async function editComp(
 
 export async function checkComp(name: string): Promise<boolean> {
 	try {
-		const res = await fetch(baseURL + "/competitions/validation", {
-			method: "GET",
-			headers: myHeaders,
-			body: `competitionName: ${name}`,
-		});
-
+		const res = await fetch(
+			baseURL +
+				"/competitions/validation?" +
+				new URLSearchParams({ competitionName: name }),
+			{
+				method: "GET",
+				headers: myHeaders,
+			}
+		);
+		console.log(res);
 		if (res.ok) {
 			// refresh?
 			return true;

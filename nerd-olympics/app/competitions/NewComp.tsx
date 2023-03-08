@@ -26,16 +26,18 @@ export default function NewComp() {
 	const [inUse, setInUse] = useState(false);
 
 	useEffect(() => {
-		setDisabled(!localComp?.name || !localComp.description);
-	}, [localComp]);
+		setDisabled(!localComp?.name || !localComp.description || inUse);
+	}, [localComp, inUse]);
 
-	/*	useEffect(() => {
-		(async () => {
+	const handleBlur = async () => {
+		if (localComp.name !== "") {
 			setInUse(await checkComp(localComp.name));
-		})();
-		console.log(inUse);
-	}, [localComp.name, user.token, inUse]);
-*/
+		}
+	};
+	const handleFocus = () => {
+		setInUse(false);
+	};
+
 	const handleChange = (event: ChangeEvent<HTMLInputElement>) => {
 		setLocalComp({ ...localComp, [event.target.name]: event.target.value });
 	};
@@ -67,7 +69,9 @@ export default function NewComp() {
 					name="name"
 					value={localComp.name}
 					onChange={handleChange}
+					onBlur={handleBlur}
 					required
+					onFocus={handleFocus}
 				/>
 				{inUse ? (
 					<div className={style.inUse}>Name already in use</div>
@@ -82,8 +86,8 @@ export default function NewComp() {
 					onChange={handleChange}
 					required
 				/>
-				<div className={style.measurementType}>
-					Measurement Type:
+				<div className={style.classificationType}>
+					Classifcation Type:
 					{Ascending ? (
 						<>
 							<div>

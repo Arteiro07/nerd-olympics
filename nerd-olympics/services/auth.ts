@@ -81,3 +81,39 @@ export async function authSignIn(
 		}
 	}
 }
+
+export async function checkUserEmail(email: string): Promise<boolean> {
+	try {
+		const res = await fetch(
+			baseURL + "/users/validation?" + new URLSearchParams({ email: email }),
+			{
+				method: "GET",
+				headers: myHeaders,
+			}
+		);
+		if (res.ok) {
+			// refresh?
+			return true;
+		}
+
+		if (!res.ok) {
+			throw new Error("Bad response from server", {
+				cause: {
+					res,
+				},
+			});
+		}
+	} catch (err: any) {
+		//replace any
+		switch (err.cause.res?.status) {
+			case 404:
+				throw new Error();
+			case 401:
+				throw new Error();
+			default:
+				throw new Error();
+		}
+	}
+
+	return false;
+}

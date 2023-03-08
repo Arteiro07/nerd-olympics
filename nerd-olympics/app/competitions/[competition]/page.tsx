@@ -4,8 +4,7 @@ import React from "react";
 import CompetitionCard from "./CompetitionCard";
 
 export default async function page({ params }: any) {
-	const competition: CompetitionDto = await getCompetition(params.id);
-	console.log(competition);
+	const competition: CompetitionDto = await getCompetition(params.competition);
 
 	return <CompetitionCard competition={competition} />;
 }

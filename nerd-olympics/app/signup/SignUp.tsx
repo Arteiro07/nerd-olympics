@@ -1,7 +1,7 @@
 "use client";
 
 import { useAuth } from "@/context/authContext";
-import { authSignUp } from "@/services/auth";
+import { authSignUp, checkUserEmail } from "@/services/auth";
 import { useRouter } from "next/navigation";
 import { ChangeEvent, FormEvent, useContext, useEffect, useState } from "react";
 import {
@@ -16,11 +16,14 @@ export default function SignUp() {
 	const [localUser, setLocalUser] = useState<User>(initialState);
 	const [disabled, setDisabled] = useState(false);
 	const [confirmPassword, setConfirmPassword] = useState("");
+	const [inUse, setInUse] = useState(false);
 	const router = useRouter();
 
 	useEffect(() => {
-		setDisabled(!localUser.email || !localUser.password || !localUser.name);
-	}, [localUser]);
+		setDisabled(
+			!localUser.email || !localUser.password || !localUser.name || inUse
+		);
+	}, [localUser, inUse]);
 
 	const handleChange = (event: ChangeEvent<HTMLInputElement>) =>
 		setLocalUser({ ...localUser, [event.target.name]: event.target.value });
@@ -35,12 +38,21 @@ export default function SignUp() {
 		router.push("/");
 	};
 
+	const handleBlur = async () => {
+		if (localUser.email !== "") {
+			setInUse(await checkUserEmail(localUser.email));
+		}
+	};
+	const handleFocus = () => {
+		setInUse(false);
+	};
+
 	const signUp = async (apiUser: User) => {
 		const res = (await authSignUp(apiUser)) as UserSignUpResponse;
 
 		setUser({
 			...user,
-			id: res.createdUser.id,
+			userId: res.createdUser.userId,
 			name: res.createdUser.name,
 			email: res.createdUser.email,
 			isLoggedIn: true,
@@ -67,7 +79,14 @@ export default function SignUp() {
 					value={localUser.email}
 					onChange={handleChange}
 					required
+					onBlur={handleBlur}
+					onFocus={handleFocus}
 				/>
+				{inUse ? (
+					<div className={style.inUse}>Email&apos;s already in use</div>
+				) : (
+					<></>
+				)}
 				<input
 					type="password"
 					placeholder="Password"
