@@ -17,10 +17,11 @@ import {
 } from "react-icons/ti";
 
 export default function NewComp() {
-	const { user, setUser } = useAuth();
-	const [localComp, setLocalComp] = useState<CompetitionDto>(
-		CompetitionDtoInitialState
-	);
+	const { user } = useAuth();
+	const [localComp, setLocalComp] = useState<CompetitionDto>({
+		...CompetitionDtoInitialState,
+		userId: user.userId,
+	});
 	const [disabled, setDisabled] = useState(false);
 	const [Ascending, setAscending] = useState(false);
 	const [inUse, setInUse] = useState(false);
@@ -50,8 +51,7 @@ export default function NewComp() {
 
 	const handleSubmit = async (e: FormEvent) => {
 		e.preventDefault();
-		setLocalComp({ ...localComp, userId: user.userId });
-
+		console.log(localComp);
 		const comp = await newComp(localComp, user.token);
 		console.log(comp);
 	};
@@ -126,7 +126,7 @@ export default function NewComp() {
 						</>
 					)}
 				</div>
-				<div>Classification Type: </div>
+				<div>Measurement Type: </div>
 				<select
 					onChange={(e) => {
 						handleSelectChange(e);

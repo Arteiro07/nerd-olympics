@@ -8,6 +8,7 @@ export async function newComp(
 ): Promise<CompetitionDto | void> {
 	myHeaders.append("Authorization", `Bearer ${token}`);
 
+	console.log(myHeaders.get("Ocp-Apim-Subscription-Key"));
 	try {
 		const res = await fetch(baseURL + "/competitions", {
 			method: "POST",
@@ -95,10 +96,10 @@ export async function checkComp(name: string): Promise<boolean> {
 				headers: myHeaders,
 			}
 		);
-		console.log(res);
+
 		if (res.ok) {
 			// refresh?
-			return true;
+			return await res.json();
 		}
 
 		if (!res.ok) {

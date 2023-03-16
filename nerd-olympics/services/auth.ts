@@ -93,7 +93,7 @@ export async function checkUserEmail(email: string): Promise<boolean> {
 		);
 		if (res.ok) {
 			// refresh?
-			return true;
+			return await res.json();
 		}
 
 		if (!res.ok) {

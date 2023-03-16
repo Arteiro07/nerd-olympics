@@ -41,6 +41,7 @@ export default function Dropdow(props: DropdownProps) {
 			isLoggedIn: true,
 			token: res.token,
 		});
+		props.close();
 	};
 
 	if (props.isLoggedIn) {
@@ -92,7 +93,11 @@ export default function Dropdow(props: DropdownProps) {
 									value="Login"
 								/>
 							</form>
-							<Link className={style.signup} href="/signup">
+							<Link
+								className={style.signup}
+								href="/signup"
+								onClick={() => props.close()}
+							>
 								Sign Up
 							</Link>
 						</>
