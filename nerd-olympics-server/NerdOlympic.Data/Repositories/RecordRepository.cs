@@ -49,7 +49,7 @@ namespace NerdOlympics.Data.Repositories
 
         public async Task<Record> UpdateUserRecord(Record newRecord)
         {
-            var oldRecord = _context.Records!.FirstOrDefault(x => x.RecordId == newRecord.RecordId);
+            var oldRecord = await _context.Records!.FirstOrDefaultAsync(x => x.RecordId == newRecord.RecordId);
 
             if (oldRecord == null)            
                 throw new CustomException((int)HttpStatusCode.NotFound, ErrorMessage.RECORD_NOT_FOUND);            
@@ -59,7 +59,7 @@ namespace NerdOlympics.Data.Repositories
 
             await _context.SaveChangesAsync();
 
-            var record = _context.Records!.FirstOrDefault(x => x.CompetitionId != oldRecord.CompetitionId);
+            var record = await _context.Records!.FirstOrDefaultAsync(x => x.CompetitionId != oldRecord.CompetitionId);
 
             if(record == null)
                 throw new CustomException((int)HttpStatusCode.NotFound, ErrorMessage.RECORD_UPDATE_ERROR);
