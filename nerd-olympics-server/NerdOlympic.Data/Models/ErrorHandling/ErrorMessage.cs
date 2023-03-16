@@ -13,6 +13,8 @@ namespace NerdOlympics.Data.Models.ErrorHandling
         public const string COMPETITION_UPDATE_ERROR = "Error updating competiton";
         public const string COMPETITION_DELETE_ERROR = "Error deleting competiton";
         public const string COMPETITION_NOT_FOUND = "Competition does not exist";
+        public const string COMPETITION_TYPE_NOT_FOUND = "Competition type does not exist";
+        public const string COMPETITION_ClASSIFICATION_TYPE_NOT_FOUND = "Competition type does not exist";
         public const string COMPETITION_NAME_EXISTS = "Competition name already exists";
 
         // Users 

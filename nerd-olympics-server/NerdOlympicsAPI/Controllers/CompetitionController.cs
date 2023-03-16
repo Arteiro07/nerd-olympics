@@ -24,44 +24,37 @@ public class CompetitionController : Controller
     [ProducesResponseType(typeof(IActionResult), 200)]
     [ProducesResponseType(typeof(ErrorResponse), 400)]
     [ProducesResponseType(typeof(ErrorResponse), 500)]
-    //[Authorize(Policies.Authenticated)]
     public async Task<IActionResult> GetCompetitions()
     {
         return await _competitionsService.GetCompetitions();
     }
     
     [HttpGet]
-<<<<<<< HEAD
     [Route("")]
-    [Authorize(Policies.Authenticated)]
-=======
     [ProducesResponseType(typeof(IActionResult), 200)]
     [ProducesResponseType(typeof(ErrorResponse), 400)]
     [ProducesResponseType(typeof(ErrorResponse), 500)]
-    //[Authorize(Policies.Authenticated)]
->>>>>>> main
     public async Task<IActionResult> GetCompetition(int competitionId)
     {
         return await _competitionsService.GetCompetition(competitionId);
     }
 
     [HttpGet]
-<<<<<<< HEAD
     [Route("leaderboard")]
-    [Authorize(Policies.Authenticated)]
+    //[Authorize(Policies.Authenticated)]
     public async Task<IActionResult> GetCompetitionLeaderboard(int competitionId)
     {
-        return await _competitionsService.GetCompetitionLeaderBoard(competitionId);
-=======
+        return await _competitionsService.GetCompetitionLeaderBoard(competitionId); 
+    }
+
+    [HttpGet]
     [Route("validation")]
     [ProducesResponseType(typeof(IActionResult), 200)]
     [ProducesResponseType(typeof(ErrorResponse), 400)]
     [ProducesResponseType(typeof(ErrorResponse), 500)]
-    //[Authorize(Policies.Authenticated)]
     public async Task<IActionResult> CompetitionNameExists(string competitionName)
     {
         return await _competitionsService.CompetitionNameExists(competitionName);
->>>>>>> main
     }
 
     [HttpPost]

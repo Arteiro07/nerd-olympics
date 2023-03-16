@@ -15,6 +15,7 @@ using NerdOlympics.API.Services;
 using NerdOlympics.Data;
 using NerdOlympics.Data.Enum.Security;
 using NerdOlympics.API.Services.ErrorHandling;
+using NerdOlympics.API.FactoryPattern;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -33,6 +34,9 @@ builder.Services.AddScoped<IUserService, UserService>();
 
 builder.Services.AddScoped<IRecordService, RecordService>();
 builder.Services.AddScoped<IRecordRepository, RecordRepository>();
+
+builder.Services.AddTransient<CompetitionFactory>();
+builder.Services.AddScoped<IFactoryRepository, FactoryRepository>();
 
 builder.Services.AddSingleton<IJwtTokenService,JwtTokenService>();
 

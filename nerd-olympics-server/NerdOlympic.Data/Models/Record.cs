@@ -16,5 +16,7 @@ namespace NerdOlympics.Data.Models
 
         [ForeignKey("User")]
         public int UserId { get; set; }
+        [JsonIgnore]
+        public User User { get; set; } = new User();
     }
 }

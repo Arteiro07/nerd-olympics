@@ -57,10 +57,8 @@ namespace NerdOlympics.Data.Repositories
 
         public async Task<Competition> UpdateCompetition(Competition competition)
         {
-            var oldCompetition = _context.Competitions!.FirstOrDefault(x => x.CompetitionId == competition.CompetitionId);
-
-            if(oldCompetition == null)
-                throw new CustomException((int)HttpStatusCode.NotFound, ErrorMessage.COMPETITION_NOT_FOUND);            
+            var oldCompetition = _context.Competitions!.FirstOrDefault(x => x.CompetitionId == competition.CompetitionId) ?? 
+                throw new CustomException((int)HttpStatusCode.NotFound, ErrorMessage.COMPETITION_NOT_FOUND);
 
             oldCompetition.Description = competition!.Description;
             oldCompetition.Name = competition!.Name;

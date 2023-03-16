@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using NerdOlympics.Data;
 
@@ -11,9 +12,11 @@ using NerdOlympics.Data;
 namespace NerdOlympics.Data.Migrations
 {
     [DbContext(typeof(NerdOlympicsDBContext))]
-    partial class NerdOlympicsDBContextModelSnapshot : ModelSnapshot
+    [Migration("20230307174402_UserProperties")]
+    partial class UserProperties
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -79,8 +82,6 @@ namespace NerdOlympics.Data.Migrations
 
                     b.HasKey("RecordId");
 
-                    b.HasIndex("UserId");
-
                     b.ToTable("Records");
                 });
 
@@ -116,17 +117,6 @@ namespace NerdOlympics.Data.Migrations
                     b.HasKey("UserId");
 
                     b.ToTable("Users");
-                });
-
-            modelBuilder.Entity("NerdOlympics.Data.Models.Record", b =>
-                {
-                    b.HasOne("NerdOlympics.Data.Models.User", "User")
-                        .WithMany()
-                        .HasForeignKey("UserId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("User");
                 });
 #pragma warning restore 612, 618
         }

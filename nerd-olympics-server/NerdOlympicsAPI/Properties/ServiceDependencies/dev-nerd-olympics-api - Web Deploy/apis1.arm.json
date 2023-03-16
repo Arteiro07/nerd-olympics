@@ -36,7 +36,7 @@
     },
     {
       "type": "Microsoft.Resources/deployments",
-      "name": "[concat(parameters('resourceGroupName'), 'Deployment', uniqueString(concat('nerd-olympics-api-dev', subscription().subscriptionId)))]",
+      "name": "[concat(parameters('resourceGroupName'), 'Deployment', uniqueString(concat('NerdOlympicsAPI', subscription().subscriptionId)))]",
       "resourceGroup": "[parameters('resourceGroupName')]",
       "apiVersion": "2019-10-01",
       "dependsOn": [
@@ -49,7 +49,7 @@
           "contentVersion": "1.0.0.0",
           "resources": [
             {
-              "name": "apim-nerd-olympics-dev",
+              "name": "dev-apim-nerd-olympics",
               "type": "Microsoft.ApiManagement/service",
               "location": "[parameters('resourceLocation')]",
               "properties": {
@@ -59,7 +59,7 @@
                 "hostnameConfigurations": [
                   {
                     "type": "Proxy",
-                    "hostName": "apim-nerd-olympics-dev.azure-api.net",
+                    "hostName": "dev-apim-nerd-olympics.azure-api.net",
                     "encodedCertificate": null,
                     "keyVaultId": null,
                     "certificatePassword": null,
@@ -82,6 +82,7 @@
                 },
                 "virtualNetworkType": "None",
                 "certificates": null,
+                "enableClientCertificate": false,
                 "disableGateway": false,
                 "apiVersionConstraint": {
                   "minApiVersion": null
@@ -95,14 +96,14 @@
             },
             {
               "type": "Microsoft.ApiManagement/service/apis",
-              "name": "apim-nerd-olympics-dev/nerd-olympics-api-dev",
+              "name": "dev-apim-nerd-olympics/NerdOlympicsAPI",
               "properties": {
-                "displayName": "nerd-olympics-api-dev",
+                "displayName": "NerdOlympicsAPI",
                 "apiRevision": "1",
                 "description": null,
                 "subscriptionRequired": true,
                 "serviceUrl": null,
-                "path": "",
+                "path": "nerd-olympics",
                 "protocols": [
                   "https"
                 ],
@@ -118,7 +119,7 @@
               },
               "apiVersion": "2019-12-01",
               "dependsOn": [
-                "apim-nerd-olympics-dev"
+                "dev-apim-nerd-olympics"
               ]
             }
           ]

@@ -21,7 +21,7 @@
     },
     "resourceName": {
       "type": "string",
-      "defaultValue": "nerd-olympics-api-dev",
+      "defaultValue": "dev-nerd-olympics-api",
       "metadata": {
         "description": "Name of the main resource to be created by this template."
       }

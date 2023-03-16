@@ -2,23 +2,21 @@
 using Microsoft.AspNetCore.Mvc;
 using NerdOlympics.Data.Interfaces;
 using NerdOlympicsAPI.Interfaces;
-<<<<<<< HEAD
 using NerdOlympics.API.Factory;
 using NerdOlympics.API.FactoryPattern;
-=======
 using NerdOlympics.Data.Models.ErrorHandling;
 using System.Net;
->>>>>>> main
-
 namespace NerdOlympicsAPI.Services
 {
     public class CompetitionsService : ICompetitionsService
     {
         private readonly ICompetitionRepository _competitionRepository;
+        private readonly CompetitionFactory _competitionFactory;
 
-        public CompetitionsService(ICompetitionRepository competitionRepository) 
+        public CompetitionsService(ICompetitionRepository competitionRepository, CompetitionFactory competitionFactory) 
         {
             _competitionRepository = competitionRepository;
+            _competitionFactory = competitionFactory;
         }
 
         public async Task<IActionResult> GetCompetitions()
@@ -33,9 +31,10 @@ namespace NerdOlympicsAPI.Services
 
         public async Task<IActionResult> GetCompetitionLeaderBoard(int competitionId)
         {
-            Competition c = await _competitionRepository.GetCompetition(competitionId)?;
+            var c = await _competitionRepository.GetCompetition(competitionId) 
+                ?? throw new CustomException((int)HttpStatusCode.NotFound, ErrorMessage.COMPETITION_NOT_FOUND);
 
-            ICompetition competition = CompetitionFactory.GetCompetition(c.MeasurementType);
+            ICompetition competition = _competitionFactory.GetCompetition(c.MeasurementType, c.ClassificationType, c.CompetitionId);
 
             return new OkObjectResult(await competition.Leaderboard());
         }
