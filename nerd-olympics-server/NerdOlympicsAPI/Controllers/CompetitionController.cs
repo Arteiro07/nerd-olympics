@@ -44,7 +44,15 @@ public class CompetitionController : Controller
     //[Authorize(Policies.Authenticated)]
     public async Task<IActionResult> GetCompetitionLeaderboard(int competitionId)
     {
-        return await _competitionsService.GetCompetitionLeaderBoard(competitionId); 
+        return await _competitionsService.GetCompetitionLeaderBoard(competitionId);
+    }
+
+    [HttpGet]
+    [Route("user-leaderboard")]
+    //[Authorize(Policies.Authenticated)]
+    public async Task<IActionResult> GetCompetitionUserLeaderboard(int competitionId, int userId)
+    {
+        return await _competitionsService.GetCompetitionUserLeaderBoard(competitionId, userId);
     }
 
     [HttpGet]

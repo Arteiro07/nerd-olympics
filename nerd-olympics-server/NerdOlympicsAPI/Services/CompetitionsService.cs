@@ -11,11 +11,13 @@ namespace NerdOlympicsAPI.Services
     public class CompetitionsService : ICompetitionsService
     {
         private readonly ICompetitionRepository _competitionRepository;
+        private readonly IUserRepository _userRepository;
         private readonly CompetitionFactory _competitionFactory;
 
-        public CompetitionsService(ICompetitionRepository competitionRepository, CompetitionFactory competitionFactory) 
+        public CompetitionsService(ICompetitionRepository competitionRepository, IUserRepository userRepository, CompetitionFactory competitionFactory) 
         {
             _competitionRepository = competitionRepository;
+            _userRepository = userRepository;
             _competitionFactory = competitionFactory;
         }
 
@@ -31,12 +33,24 @@ namespace NerdOlympicsAPI.Services
 
         public async Task<IActionResult> GetCompetitionLeaderBoard(int competitionId)
         {
-            var c = await _competitionRepository.GetCompetition(competitionId) 
+            var c = await _competitionRepository.GetCompetition(competitionId)
                 ?? throw new CustomException((int)HttpStatusCode.NotFound, ErrorMessage.COMPETITION_NOT_FOUND);
 
             ICompetition competition = _competitionFactory.GetCompetition(c.MeasurementType, c.ClassificationType, c.CompetitionId);
 
             return new OkObjectResult(await competition.Leaderboard());
+        }
+        public async Task<IActionResult> GetCompetitionUserLeaderBoard(int competitionId, int userId)
+        {
+            var c = await _competitionRepository.GetCompetition(competitionId)
+                ?? throw new CustomException((int)HttpStatusCode.NotFound, ErrorMessage.COMPETITION_NOT_FOUND);
+            
+            if(!await _userRepository.UserExists(userId))
+                throw new CustomException((int)HttpStatusCode.NotFound, ErrorMessage.COMPETITION_NOT_FOUND);
+
+            ICompetition competition = _competitionFactory.GetCompetition(c.MeasurementType, c.ClassificationType, c.CompetitionId);
+
+            return new OkObjectResult(await competition.UserLeaderboard(userId));
         }
 
         public async Task<IActionResult> CreateCompetition(Competition competition)

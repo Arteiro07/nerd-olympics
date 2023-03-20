@@ -8,14 +8,14 @@ using System.Net;
 
 namespace NerdOlympics.API.FactoryPattern.Models.CompetitionTypes
 {
-    public class TimedCompetition : ICompetition
+    public class LengthCompetition : ICompetition
     {
         public ClassificationType ClassificationType { get; }
         public IFactoryRepository _repository { get; }
 
         public int CompetitionID { get; }
 
-        public TimedCompetition(IFactoryRepository repository, int competitionId, ClassificationType classificationType) 
+        public LengthCompetition(IFactoryRepository repository, int competitionId, ClassificationType classificationType) 
         {
             _repository = repository;
             CompetitionID = competitionId;
@@ -57,7 +57,7 @@ namespace NerdOlympics.API.FactoryPattern.Models.CompetitionTypes
                 OverallPoints = 0,
                 Position = -1
             }).ToList();
-            
+
             return await OrderUserRecords(records);
         }
 
@@ -94,7 +94,7 @@ namespace NerdOlympics.API.FactoryPattern.Models.CompetitionTypes
 
             return records.ToList();
         }
-        
+
         private async Task<List<ScoreLine>> OrderUserRecords(List<ScoreLine> records)
         {
             if (!records.Any())

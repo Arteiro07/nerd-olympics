@@ -27,8 +27,4 @@
     <ProjectReference Include="..\NerdOlympic.Data\NerdOlympics.Data.csproj" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="FactoryPattern\Models\CompetitionTypes\" />
-  </ItemGroup>
-
 </Project>

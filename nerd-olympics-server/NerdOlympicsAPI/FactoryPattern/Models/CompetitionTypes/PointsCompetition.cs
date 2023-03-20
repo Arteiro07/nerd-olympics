@@ -8,14 +8,14 @@ using System.Net;
 
 namespace NerdOlympics.API.FactoryPattern.Models.CompetitionTypes
 {
-    public class TimedCompetition : ICompetition
+    public class PointsCompetition : ICompetition
     {
         public ClassificationType ClassificationType { get; }
         public IFactoryRepository _repository { get; }
 
         public int CompetitionID { get; }
 
-        public TimedCompetition(IFactoryRepository repository, int competitionId, ClassificationType classificationType) 
+        public PointsCompetition(IFactoryRepository repository, int competitionId, ClassificationType classificationType) 
         {
             _repository = repository;
             CompetitionID = competitionId;
@@ -35,14 +35,13 @@ namespace NerdOlympics.API.FactoryPattern.Models.CompetitionTypes
                 UserGender = x.User.Gender,
                 UserId = x.UserId,
                 UserName = x.User.Name ?? "",
-                Value = float.Parse(x.Value),
+                Value = int.Parse(x.Value),
                 OverallPoints = 0,
                 Position = -1
             }).ToList();
 
             return await OrderRecords(records);
         }
-
         public async Task<List<ScoreLine>> UserLeaderboard(int userId)
         {
             var records = (await _repository.GetCompetitionUserRecords(CompetitionID, userId)).Select(x => new ScoreLine
@@ -57,7 +56,7 @@ namespace NerdOlympics.API.FactoryPattern.Models.CompetitionTypes
                 OverallPoints = 0,
                 Position = -1
             }).ToList();
-            
+
             return await OrderUserRecords(records);
         }
 
@@ -94,7 +93,7 @@ namespace NerdOlympics.API.FactoryPattern.Models.CompetitionTypes
 
             return records.ToList();
         }
-        
+
         private async Task<List<ScoreLine>> OrderUserRecords(List<ScoreLine> records)
         {
             if (!records.Any())

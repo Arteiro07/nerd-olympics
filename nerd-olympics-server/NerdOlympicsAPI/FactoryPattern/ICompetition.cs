@@ -11,5 +11,6 @@ namespace NerdOlympics.API.Factory
         int CompetitionID { get; }
         public IFactoryRepository _repository { get; }
         Task<List<ScoreLine>> Leaderboard();
+        Task<List<ScoreLine>> UserLeaderboard(int userId);
     }
 }

@@ -23,5 +23,10 @@ namespace NerdOlympics.Data.Repositories
         {
             return await _context.Records!.Include(x => x.User).Where(x => x.CompetitionId == competitionId).ToListAsync();
         }
+
+        public async Task<List<Record>> GetCompetitionUserRecords(int competitionID, int userId)
+        {
+            return await _context.Records!.Include(x => x.User).Where(x => x.CompetitionId == competitionID && userId == x.UserId).ToListAsync();
+        }
     }
 }

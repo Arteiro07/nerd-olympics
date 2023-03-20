@@ -25,7 +25,13 @@ namespace NerdOlympics.API.FactoryPattern
             {
                 case CompetitionType.Time:
                     return new TimedCompetition(_context, competitionId, classificationType);
-                // add cases for other types of competition
+                case CompetitionType.Length:
+                    return new LengthCompetition(_context, competitionId, classificationType);
+                case CompetitionType.Points:
+                    return new PointsCompetition(_context, competitionId, classificationType);
+                case CompetitionType.Repetitions:
+                    return new RepetitionCompetition(_context, competitionId, classificationType);
+                
                 default:
                     throw new CustomException((int)HttpStatusCode.NotFound,ErrorMessage.COMPETITION_TYPE_NOT_FOUND);
             }
